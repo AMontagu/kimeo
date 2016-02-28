@@ -22,6 +22,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from KimeoApp import views
 
 urlpatterns = [
+    url(r'^$', views.home),
     url(r'^home', views.home),
     url(r'^about', views.about),
     url(r'^portfolio', views.portfolio),
