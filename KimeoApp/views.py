@@ -41,7 +41,7 @@ def contact(request):
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
 
-            send_mail(subject, name + 'Sent you a message \n\n' + message, to=[email], fail_silently=False)
+            send_mail(subject, name + 'Sent you a message \n\n' + message, email, fail_silently=False)
 
             send = True
     else:
