@@ -666,6 +666,7 @@ input.search-form:hover {
   background: #fff;
   border-radius: 4px;
   margin: 0 0 40px;
+  height: 170px;
 }
 
 .services-wrap h3 {
