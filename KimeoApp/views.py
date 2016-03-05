@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+import django
+from kimeo.settings import *
 from django.shortcuts import render
 from django.core.mail import send_mail
 from KimeoApp.forms import ContactForm
