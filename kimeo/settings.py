@@ -28,6 +28,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contact.kimeo@gmail.com'
 EMAIL_HOST_PASSWORD = 'kimeoPass2016$'
 DEFAULT_FROM_EMAIL = 'contact.kimeo@gmail.com'
+SERVER_EMAIL = 'contact.kimeo@gmail.com'
 DEFAULT_TO_EMAIL = 'to email'
 
 # Quick-start development settings - unsuitable for production
