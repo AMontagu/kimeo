@@ -27,11 +27,12 @@ urlpatterns = [
     url(r'^about', views.about),
     url(r'^portfolio', views.portfolio),
     url(r'^actions', views.actions),
+    url(r'^control', views.control),
     url(r'^movement', views.movement),
     url(r'^message', views.message),
     url(r'^monitoring', views.monitoring),
-    url(r'^blog', views.blog),
     url(r'^contact', views.contact),
+    url(r'mail',views.mail),
     url(r'^admin/', admin.site.urls),
 ]
 
