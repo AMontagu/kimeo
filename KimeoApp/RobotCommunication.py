@@ -1,6 +1,6 @@
 #This is a singleton class for send action to the robot.
-import json
-
+from django.utils.six import BytesIO
+from rest_framework.parsers import JSONParser
 
 class RobotCommunication:
     class __RobotCommunication:
@@ -15,16 +15,26 @@ class RobotCommunication:
 
     def __init__(self):
         if not RobotCommunication.instance:
-            RobotCommunication.instance = RobotCommunication.__CommandHandler()
+            RobotCommunication.instance = RobotCommunication.__RobotCommunication()
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
 
     def receiveMessage(self, dataSerialized):
-        print(dataSerialized)
+        print(dataSerialized.data['content']) # data['robotId'], data['userName'], data['content'], data['created']
+        #TODO condition and process for handle message
 
-    def move(self):
-        pass
+    def move(self, dataSerialized):
+        typeMovement = dataSerialized.data['direction'] #data['direction'], data['speedright'], data['speedLeft'], data['duration']
+        if typeMovement == "forward":
+            #TODO call serial communication for move forward the robot with speed and duration apropriate
+            pass
+        if typeMovement == "backward":
+            pass
+        if typeMovement == "turnLeft":
+            pass
+        if typeMovement == "turnRight":
+            pass
 
     def changeRobotFace(self):
         pass

@@ -2339,7 +2339,7 @@ ul.sidebar-gallery {
 
 #comments_title{
    color:#4e4e4e;
-   font-weight:700px;
+   font-weight:700;
    font-size:20px;
    margin-top:60px;
    margin-bottom:40px;
@@ -2524,6 +2524,25 @@ shortcodes page css
 #footer ul > li {
   display: inline-block;
   margin-left: 15px;
+}
+
+.rangeSpeedMotor *{
+  display: inline-block;
+}
+
+.rangeSpeedMotor p{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.marginT50{
+  margin-top: 50px;
+}
+
+.btnSendApi{
+  display: block !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

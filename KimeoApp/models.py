@@ -7,5 +7,9 @@ class Message(models.Model):
     content = models.TextField(null=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False, verbose_name="Creation Date")
 
-#message = Message(robotId=0, userName="test", content='happyFace')
+class Movement(models.Model):
+    direction = models.CharField(max_length=100) #type of movement : forward, backward, left, right
+    rightSpeed = models.IntegerField()
+    leftSpeed = models.IntegerField()
+    duration = models.IntegerField()
 

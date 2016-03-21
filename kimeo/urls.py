@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/messages/$', views.MessageList.as_view()),
     url(r'^api/messages/(?P<pk>[0-9]+)/$', views.MessageDetail.as_view()),
+    url(r'^api/movements/$', views.MovementList.as_view()),
+    url(r'^api/movements/(?P<pk>[0-9]+)/$', views.MovementDetail.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

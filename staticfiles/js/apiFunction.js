@@ -40,6 +40,60 @@ jQuery(function($) {
             });
         });
 
+        $('#angryMessage').on('click', function () {
+            console.log('press btn');
+            $.ajax({
+                type: 'POST',
+                url: "/api/messages/",
+                headers: {
+                     Accept : "*/*",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data:{"robotId": currentRobotId, "userName": currentUserName, "content": "angryMessage"},
+                timeout: 3000,
+                success: function (result) {
+                    alert("message sended");
+                    console.log(result);
+                },
+                error: function(err) {
+                    alert('Not Working' + err.message);
+                    console.log(err);
+                }
+            });
+        });
+
+
+
+
+        $('#btnSendMovement').on('click', function() {
+            var sliderSpeedRight = ($('#speedRight').val() == "") ? 100 : $('#speedRight').val();
+            var sliderSpeedLeft = ($('#speedLeft').val() == "") ? 100 : $('#speedLeft').val();
+            var direction = $('#selectDirection').val();
+            var duration = ($('#inputDuration').val() == "") ? 0 : parseInt($('#inputDuration').val());
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            $.ajax({
+                type: 'POST',
+                url: "/api/movements/",
+                headers: {
+                     Accept : "*/*",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data:{"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "duration": duration},
+                timeout: 3000,
+                success: function (result) {
+                    alert("message sended");
+                    console.log(result);
+                },
+                error: function(err) {
+                    alert('Not Working ' + err.responseText);
+                    console.log(err);
+                }
+            });
+        })
 
     });
 });

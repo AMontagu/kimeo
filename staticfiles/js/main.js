@@ -1,5 +1,9 @@
 jQuery(function($) {'use strict',
 
+	$('.selectpicker').selectpicker();
+
+    $('.slider').slider();
+
 	//#main-slider
 	$(function(){
 		$('#main-slider.carousel').carousel({

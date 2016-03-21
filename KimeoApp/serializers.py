@@ -19,3 +19,9 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Message
         fields = ('robotId', 'userName', 'content', 'created')
+
+
+class MovementSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Movement
+        fields = ('direction', 'rightSpeed', 'leftSpeed', 'duration')
