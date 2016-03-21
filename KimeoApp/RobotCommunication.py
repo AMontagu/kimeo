@@ -1,4 +1,6 @@
 #This is a singleton class for send action to the robot.
+import json
+
 
 class RobotCommunication:
     class __RobotCommunication:
@@ -18,8 +20,8 @@ class RobotCommunication:
     def __getattr__(self, name):
         return getattr(self.instance, name)
 
-    def receiveMessage(self):
-        pass
+    def receiveMessage(self, dataSerialized):
+        print(dataSerialized)
 
     def move(self):
         pass

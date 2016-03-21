@@ -20,16 +20,11 @@ from kimeo import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from KimeoApp import views
-from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'messages', views.MessageViewSet)
 
 urlpatterns = [
     url(r'^$', views.home),
-    url(r'^api/', include(router.urls)),
     url(r'^home', views.home),
     url(r'^about', views.about),
     url(r'^portfolio', views.portfolio),
@@ -42,6 +37,8 @@ urlpatterns = [
     url(r'mail',views.mail),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/messages/$', views.MessageList.as_view()),
+    url(r'^api/messages/(?P<pk>[0-9]+)/$', views.MessageDetail.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

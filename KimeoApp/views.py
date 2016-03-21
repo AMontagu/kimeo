@@ -11,12 +11,15 @@ from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from django.http import Http404
 from KimeoApp.serializers import *
 from KimeoApp.models import *
 from KimeoApp.RobotCommunication import *
 
 ### ------------- Navigation views -----------------------------
 def home(request):
+    print("home")
     return render(request, 'index.html')
 
 def about(request):
@@ -74,24 +77,54 @@ def mail(request):
 
 ### ------------------ API PART---------------------------------
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
+"""class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
 
 class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = GroupSerializer"""
 
-class MessageViewSet(viewsets.ModelViewSet):
+class MessageList(APIView):
     """
-    API endpoint that allows groups to be viewed or edited.
+    List all snippets, or create a new snippet.
     """
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
+    def get(self, request, format=None):
+        message = Message.objects.all()
+        serializer = MessageSerializer(message, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            robotCommunication = RobotCommunication()
+            robotCommunication.receiveMessage(serializer);
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class MessageDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Message.objects.get(pk=pk)
+        except Message.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        message = self.get_object(pk)
+        serializer = MessageSerializer(message)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        message = self.get_object(pk)
+        serializer = MessageSerializer(message, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        message = self.get_object(pk)
+        message.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
