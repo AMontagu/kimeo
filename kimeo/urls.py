@@ -13,16 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from kimeo import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from KimeoApp import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     url(r'^$', views.home),
+    url(r'^api/', include(router.urls)),
     url(r'^home', views.home),
     url(r'^about', views.about),
     url(r'^portfolio', views.portfolio),
@@ -34,6 +40,7 @@ urlpatterns = [
     url(r'^contact', views.contact),
     url(r'mail',views.mail),
     url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
