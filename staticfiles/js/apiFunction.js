@@ -3,11 +3,18 @@
  */
 
 jQuery(function($) {
-    var csrftoken = $.cookie('csrftoken');
+    var csrftoken = Cookies.get('csrftoken');
     console.log(csrftoken);
 
     var currentRobotId = 0; //TODO need to be change : 0 = french robot, 1 = corean robot
     var currentUserName = "adrien"; //TODO need to be automatized xith python variable or in server side
+
+    $(function () {
+        $.ajaxSetup({
+            headers: { "X-CSRFToken": csrftoken }
+        });
+    });
+
     $(document).ready(function() {
         $('#happyMessage').on('click', function () {
             console.log('press btn');
