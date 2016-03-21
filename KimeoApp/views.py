@@ -6,8 +6,14 @@ from django.core.mail import send_mail
 from KimeoApp.forms import ContactForm
 
 from django.contrib.auth.models import User, Group
+from rest_framework import status
 from rest_framework import viewsets
-from KimeoApp.serializers import UserSerializer, GroupSerializer
+from rest_framework.decorators import detail_route, list_route
+from rest_framework.response import Response
+from rest_framework import viewsets
+from KimeoApp.serializers import *
+from KimeoApp.models import *
+from KimeoApp.RobotCommunication import *
 
 ### ------------- Navigation views -----------------------------
 def home(request):
@@ -82,3 +88,10 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class MessageViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
