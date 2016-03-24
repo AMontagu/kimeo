@@ -36,8 +36,14 @@ class RobotCommunication:
         if typeMovement == "turnRight":
             pass
 
-    def changeRobotFace(self):
-        pass
+    def changeRobotFace(self, dataSerialized):
+        face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
+        print(face)
 
-    def makeSound(self):
-        pass
+    def makeSound(self, dataSerialized):
+        sound = dataSerialized.data['soundName']  # data['soundName'], data['repeat']
+        print(sound)
+
+    def makeLight(self, dataSerialized):
+        turnOn = dataSerialized.data['turnOn']  # data['turnOn'], data['blink'], data['repeat'], data['intervalBlinking']
+        print(turnOn)

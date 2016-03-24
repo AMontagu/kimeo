@@ -25,3 +25,21 @@ class MovementSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Movement
         fields = ('direction', 'rightSpeed', 'leftSpeed', 'duration')
+
+
+class LightSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Light
+        fields = ('turnOn', 'blink', 'repeat', 'intervalBlinking')
+
+
+class SoundSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Sound
+        fields = ('soundName', 'repeat')
+
+
+class ScreenSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Screen
+        fields = ('imageName', 'stay', 'timeToStay')

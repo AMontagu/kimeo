@@ -147,8 +147,8 @@ class MovementList(APIView):
         serializer = MovementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            #robotCommunication = RobotCommunication()
-            #robotCommunication.move(serializer)
+            robotCommunication = RobotCommunication()
+            robotCommunication.move(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -175,4 +175,145 @@ class MovementDetail(APIView):
     def delete(self, request, pk, format=None):
         movement = self.get_object(pk)
         movement.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# --------------------------- Sound part -------------------
+
+class SoundList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        sound = Sound.objects.all()
+        serializer = SoundSerializer(sound, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = SoundSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            robotCommunication = RobotCommunication()
+            robotCommunication.makeSound(serializer)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SoundDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Sound.objects.get(pk=pk)
+        except Sound.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        sound = self.get_object(pk)
+        serializer = SoundSerializer(sound)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        sound = self.get_object(pk)
+        serializer = SoundSerializer(sound, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        sound = self.get_object(pk)
+        sound.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# --------------------------- Sound part -------------------
+
+class LightList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        light = Light.objects.all()
+        serializer = LightSerializer(light, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = LightSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            robotCommunication = RobotCommunication()
+            robotCommunication.makeLight(serializer)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LightDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Light.objects.get(pk=pk)
+        except Light.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        light = self.get_object(pk)
+        serializer = LightSerializer(light)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        light = self.get_object(pk)
+        serializer = LightSerializer(light, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        light = self.get_object(pk)
+        light.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# --------------------------- Screen part -------------------
+
+class ScreentList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        screen = Screen.objects.all()
+        serializer = ScreenSerializer(screen, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = ScreenSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            robotCommunication = RobotCommunication()
+            robotCommunication.changeRobotFace(serializer)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ScreenDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Screen.objects.get(pk=pk)
+        except Screen.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        screen = self.get_object(pk)
+        serializer = ScreenSerializer(screen)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        screen = self.get_object(pk)
+        serializer = ScreenSerializer(screen, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        screen = self.get_object(pk)
+        screen.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

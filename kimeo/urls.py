@@ -20,7 +20,6 @@ from kimeo import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from KimeoApp import views
-from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
@@ -41,6 +40,12 @@ urlpatterns = [
     url(r'^api/messages/(?P<pk>[0-9]+)/$', views.MessageDetail.as_view()),
     url(r'^api/movements/$', views.MovementList.as_view()),
     url(r'^api/movements/(?P<pk>[0-9]+)/$', views.MovementDetail.as_view()),
+    url(r'^api/lights/$', views.LightList.as_view()),
+    url(r'^api/lights/(?P<pk>[0-9]+)/$', views.LightDetail.as_view()),
+    url(r'^api/sounds/$', views.SoundList.as_view()),
+    url(r'^api/sounds/(?P<pk>[0-9]+)/$', views.SoundDetail.as_view()),
+    url(r'^api/screens/$', views.ScreentList.as_view()),
+    url(r'^api/screens/(?P<pk>[0-9]+)/$', views.ScreenDetail.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
