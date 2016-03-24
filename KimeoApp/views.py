@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.http import HttpResponse
 import django
 from kimeo.settings import *
@@ -42,7 +43,15 @@ def control(request):
     return render(request, 'control.html')
 
 def monitoring(request):
-    return render(request, 'monitoring.html')
+    #tryData = Sound.objects.all().annotate(numSound = Count('soundName')) # get all sound even it's same soundName
+    #tryData = Sound.objects.values('soundName').distinct().count() #get only the number of distinct value
+    #tryData = Sound.objects.values('soundName').distinct() # get sound distinct but without number
+    #tryData = Sound.objects.annotate(numSound = Count('soundName')) # get all sound even it's same soundName
+    tryData = Sound.objects.values('soundName').annotate(numSound = Count('soundName')) # return list of sound name with associated value
+    for sound in tryData:
+        print(sound['soundName'])
+        print(sound['numSound'])
+    return render(request, 'monitoring.html', locals())
 
 def contact(request):
     if request.method == 'POST':
