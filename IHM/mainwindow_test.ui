@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widget_ui</class>
+ <widget class="QWidget" name="widget_ui">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>740</width>
+    <height>470</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>740</width>
+    <height>470</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>740</width>
+    <height>470</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>740</width>
+    <height>470</height>
+   </size>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#widget_ui {
+	background-image: url(:/Background/ecran kimeo.png);
+}</string>
+  </property>
+  <layout class="QGridLayout" name="central_layout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
+   <property name="margin">
+    <number>5</number>
+   </property>
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>420</height>
+      </size>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::DefaultContextMenu</enum>
+     </property>
+     <widget class="QStackedWidget" name="PageSelector">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>730</width>
+        <height>420</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#pushButton_4{
+	color: rgb(0, 0, 0);
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="FaceMenu">
+       <widget class="QPushButton" name="Light_button">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>30</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Lumiere</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Sound_button">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>160</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sons</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Trajectory_button">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>300</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Trajectoire</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Com_button">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>160</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Communication</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Parameter_Button">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>300</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Parametre</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="CustomFace_button">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>30</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#pushButton_4
+{
+	color: rgb(0, 0, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="ressources/resource.qrc">
+          <normaloff>:/ImageIcon/Parameter_Icon.png</normaloff>:/ImageIcon/Parameter_Icon.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QWidget" name="FaceDisplayer" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>10</y>
+          <width>650</width>
+          <height>400</height>
+         </rect>
+        </property>
+       </widget>
+       <zorder>FaceDisplayer</zorder>
+       <zorder>Sound_button</zorder>
+       <zorder>CustomFace_button</zorder>
+       <zorder>Parameter_Button</zorder>
+       <zorder>Com_button</zorder>
+       <zorder>Light_button</zorder>
+       <zorder>Trajectory_button</zorder>
+      </widget>
+      <widget class="QWidget" name="CustomFaceMenu">
+       <widget class="QPushButton" name="return_button">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Return</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Text_Eye">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>10</y>
+          <width>180</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Eyes Selector</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Text_Mouth">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>10</y>
+          <width>180</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mouth Selector</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="EyeList_1">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>70</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ok_button">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>320</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>OK</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="MouthList_1">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>70</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="MouthList_2">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>120</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="MouthList_3">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>170</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="EyeList_2">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>120</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="EyeList_3">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>170</y>
+          <width>200</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Preview_Face"/>
+      <widget class="QWidget" name="TrajectoryDrawer"/>
+      <widget class="QWidget" name="LightMenu"/>
+      <widget class="QWidget" name="SoundMenu"/>
+      <widget class="QWidget" name="Communication"/>
+      <widget class="QWidget" name="ParameterMenu"/>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="Bandeau"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="10" margin="11"/>
+ <resources>
+  <include location="ressources/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
