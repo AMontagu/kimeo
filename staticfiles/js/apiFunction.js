@@ -107,7 +107,7 @@ jQuery(function($) {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 data:data,
-                timeout: 3000,
+                timeout: 900000000,
                 success: function (result) {
                     alert("message sended");
                     console.log(result);
