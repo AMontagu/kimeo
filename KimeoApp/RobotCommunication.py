@@ -30,17 +30,17 @@ class RobotCommunication:
     def move(self, dataSerialized):
         typeMovement = dataSerialized.data['direction'] #data['direction'], data['speedright'], data['speedLeft'], data['duration']
         print(typeMovement)
-        if typeMovement == "forward":
+        if typeMovement == "Forward":
             print("in forward")
             self.dxl_io.set_moving_speed({11: float(dataSerialized.data['speedright'])})
             time.sleep(float(dataSerialized.data['duration']))
             self.dxl_io.set_moving_speed({11: 0.0})
             #TODO call serial communication for move forward the robot with speed and duration apropriate
-        if typeMovement == "backward":
+        if typeMovement == "Backward":
             pass
-        if typeMovement == "turnLeft":
+        if typeMovement == "TurnLeft":
             pass
-        if typeMovement == "turnRight":
+        if typeMovement == "TurnRight":
             pass
 
     def changeRobotFace(self, dataSerialized):
