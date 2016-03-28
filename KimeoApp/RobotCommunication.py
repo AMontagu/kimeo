@@ -29,7 +29,9 @@ class RobotCommunication:
 
     def move(self, dataSerialized):
         typeMovement = dataSerialized.data['direction'] #data['direction'], data['speedright'], data['speedLeft'], data['duration']
+        print(typeMovement)
         if typeMovement == "forward":
+            print("in forward")
             self.dxl_io.set_moving_speed({11: float(dataSerialized.data['speedright'])})
             time.sleep(float(dataSerialized.data['duration']))
             self.dxl_io.set_moving_speed({11: 0.0})
