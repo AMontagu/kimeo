@@ -9,7 +9,10 @@ class RobotCommunication:
         def __init__(self):
             #here put all the variable of the electronical component then create function for each action
             self.serialCom = "tty/com"  # need to be replace with good one
-            self.dxl_io = pypot.dynamixel.DxlIO('/dev/ttyACM0')
+            ports = pypot.dynamixel.get_available_ports()
+            if not ports:
+                raise IOError('No port available.')
+            dxl_io = pypot.dynamixel.DxlIO(ports[0])
 
         def __str__(self):
             return repr(self) + self.serialCom
