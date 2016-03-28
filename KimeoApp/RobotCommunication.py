@@ -28,11 +28,11 @@ class RobotCommunication:
         #TODO condition and process for handle message
 
     def move(self, dataSerialized):
-        typeMovement = dataSerialized.data['direction'] #data['direction'], data['speedRight'], data['speedLeft'], data['duration']
+        typeMovement = dataSerialized.data['direction'] #data['direction'], data['rightSpeed'], data['leftSpeed'], data['duration']
         print(typeMovement)
         if typeMovement == "Forward":
             print("in forward")
-            self.dxl_io.set_moving_speed({11: float(dataSerialized.data['speedRight'])})
+            self.dxl_io.set_moving_speed({11: float(dataSerialized.data['rightSpeed'])})
             time.sleep(float(dataSerialized.data['duration']))
             self.dxl_io.set_moving_speed({11: 0.0})
             #TODO call serial communication for move forward the robot with speed and duration apropriate
