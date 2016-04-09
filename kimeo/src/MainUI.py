@@ -71,8 +71,8 @@ class MainWidget(QMainWindow):
         self.update()
         
     def SetStyleButton(self):
-        str_return_icon = """  QPushButton {background-image : url(" """ + repo + """resources/back_icon.png");}"""
-        str_ok_icon = """  QPushButton {background-image : url(" """ + repo + """resources/ok_icon.png");}"""
+        str_return_icon = "  QPushButton {background-image : url(\"" + repo + "resources/back_icon.png\");}"
+        str_ok_icon = "  QPushButton {background-image : url(\"" + repo + "resources/ok_icon.png\");}"
         ##OK Button
         self.CF_ok_button.setStyleSheet(str_ok_icon)
         self.PF_ok_button.setStyleSheet(str_ok_icon)
@@ -92,12 +92,12 @@ class MainWidget(QMainWindow):
         self.PM_return_button.setStyleSheet(str_return_icon)
         
         ##Other
-        self.Light_button.setStyleSheet("""  QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
-        self.CustomFace_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
-        self.Parameter_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
-        self.Sound_button.setStyleSheet(""" QPushButton{background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
-        self.Trajectory_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Draw_Icon.png");}""")
-        self.Com_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.Light_button.setStyleSheet(" QPushButton {background-image : url(\"" + repo + "resources/Parameter_Icon.png\");}")
+        self.CustomFace_button.setStyleSheet(" QPushButton {background-image : url(\"" + repo + "resources/Parameter_Icon.png\");}")
+        self.Parameter_button.setStyleSheet(" QPushButton {background-image : url(\"" + repo + "resources/Parameter_Icon.png\");}")
+        self.Sound_button.setStyleSheet(" QPushButton{background-image : url(\"" + repo + "resources/Parameter_Icon.png\");}")
+        self.Trajectory_button.setStyleSheet(" QPushButton {background-image : url(\"" + repo + "resources/Draw_Icon.png\");}")
+        self.Com_button.setStyleSheet(" QPushButton {background-image : url(\"" + repo + "resources/Parameter_Icon.png\");}")
         self.Battery.setPixmap(QPixmap(repo +"resources/Icon_band/Battery_icon.png"))
         self.Connectivity.setPixmap(QPixmap(repo +"resources/Icon_band/Connect_icon.png"))
         self.Sound_volume.setPixmap(QPixmap(repo +"resources/Icon_band/Sound_icon.png"))
