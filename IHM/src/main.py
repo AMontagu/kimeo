@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from MainUI import MainWidget
+from IHM.src.MainUI import MainWidget
 from PyQt4.QtGui import QApplication
 import os
 import sys
