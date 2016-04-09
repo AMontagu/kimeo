@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 
 import os
-#import IHM.src.main as ihm
 import subprocess
 
 from django.core.wsgi import get_wsgi_application
