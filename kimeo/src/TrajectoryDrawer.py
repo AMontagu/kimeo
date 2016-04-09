@@ -5,6 +5,8 @@ from PyQt4.QtCore import *
 import math
 import pypot.dynamixel
 
+repo = "/home/pi/Desktop/Kimeo/kimeo/kimeo/"
+
 
 sizeW = 540.0  
 sizeH = 380.0
