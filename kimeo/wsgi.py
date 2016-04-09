@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 
 import os
-import kimeo.IHM.src.main as kimeo
+import IHM.src.main as ihm
 
 from django.core.wsgi import get_wsgi_application
 
@@ -16,4 +16,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kimeo.settings")
 
 application = get_wsgi_application()
 
-kimeo.launch();
+ihm.launch();
