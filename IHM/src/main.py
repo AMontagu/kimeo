@@ -10,7 +10,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     
     MainWindow = MainWidget()
-    MainWindow.show()
+    MainWindow.showFullScreen()
     
     app.exec_()
     

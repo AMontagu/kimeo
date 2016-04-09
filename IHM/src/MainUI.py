@@ -10,34 +10,62 @@ class MainWidget(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         # Package resources provider
-        my_ui_path = "../MainWindow_Izar.ui"
+        my_ui_path = "../MainWindow.ui"
         # Load and sets your ui file parameters
         loadUi(my_ui_path, self)
         
-        self.MainWidget.setStyleSheet(""" #MainWidget { background-image: url("../resources/kimeo.png");}""")
+        self.MainWidget.setStyleSheet(""" #MainWidget { background-image: url("../resources/background.png");}""")
         
         self.PageSelector.setCurrentIndex(0)
         self.isReduced = False
         self.ConnectButton()
         self.SetStyleButton()
-        #self.EyeGif = QMovie("../resources/eye_test1/clintest.gif")
-        self.FaceDisplay.setPixmap(QPixmap("../resources/eye_test1/clin1.png"))
-        self.FaceDisplay.lower()
-        #self.FaceDisplay.setMovie(self.EyeGif)
-        #self.EyeGif.start()
+        self.MouthStyle = "BlackMouth"
+        self.EyeStyle = "EyeGlasses"
+        self.startGifMovie = QMovie("../resources/startkimeo.gif")
+        self.EyeGif = QMovie("")
+        self.MouthGif = QMovie("")
+        self.startGif.setMovie(self.startGifMovie)
+        self.main_screen.setVisible(False)
+        self.Eye.setMovie(self.EyeGif)
+        self.Mouth.setMovie(self.MouthGif)
         self.Brain_ = QTimer(self)
+        self.Opening_ = QTimer(self)
+        self.Opening_.stop()
+        self.playStart()
+        self.connect(self.Opening_, SIGNAL("timeout()"),
+                     self._slot_Openned)
         self.connect(self.Brain_, SIGNAL("timeout()"),
                      self._slot_brain)
         self.Brain_.start(5000)
         self.TrajectoryDrawer = QPainting_tool()
-        self.TrajectoryDrawer.resize(450,370)
+        self.TrajectoryDrawer.resize(540,380)
         self.Trajectory_Layout.addWidget(self.TrajectoryDrawer)
-        #self.PageSelector.setCurrentIndex(3)
+        self.TrajectoryDrawer.SetLabel(self.Countdown)
+        
+
+    def mousePressEvent(self, event):
+        if(self.TrajectoryDrawer.ExecuteOn == True):
+            self.TrajectoryDrawer.StopTrajectory()
+           
+    def playStart(self):
+        self.startGif.setVisible(True)
+        self.startGifMovie.setSpeed(70)
+        self.startGifMovie.start()
+        self.Opening_.start(2500)
+    
+    def _slot_Openned(self):
+        self.Opening_.stop()
+        self.setFace()
+        self.startGif.setVisible(False)
+        self.main_screen.setVisible(True)
         
     def _slot_brain(self):
-        new_eye = randint(1,6)
-        str_ = "../resources/eye_test1/clin" + str(new_eye) +".png"
-        self.FaceDisplay.setPixmap(QPixmap(str_))
+        new_eye = randint(0,2)
+        if(new_eye == 1):
+            self.EyeGif.start()
+        if(new_eye == 2):
+            self.MouthGif.start()
         self.update()
         
     def SetStyleButton(self):
@@ -109,13 +137,13 @@ class MainWidget(QMainWindow):
                      lambda: self.PageSelector.setCurrentIndex(1))
         
         self.connect(self.TD_ok_button,SIGNAL("clicked()"),
-                     lambda: self.PageSelector.setCurrentIndex(0))
-        
-        self.connect(self.TD_ok_button,SIGNAL("clicked()"),
-                     lambda: self.TrajectoryDrawer.clear_draw())
+                     lambda: self.TrajectoryDrawer.ExecuteTrajectory())
         
         self.connect(self.TD_return_button,SIGNAL("clicked()"),
                      lambda: self.PageSelector.setCurrentIndex(0))
+        
+        self.connect(self.TD_return_button,SIGNAL("clicked()"),
+                     lambda: self.TrajectoryDrawer.StopTrajectory())
         
         self.connect(self.TD_return_button,SIGNAL("clicked()"),
                      lambda: self.TrajectoryDrawer.clear_draw())
@@ -143,6 +171,18 @@ class MainWidget(QMainWindow):
         
         self.connect(self.PM_return_button,SIGNAL("clicked()"),
                      lambda: self.PageSelector.setCurrentIndex(0))
+        
+    def setFace(self):
+        str_mouth = ("../resources/FaceGif/" + self.MouthStyle + "/mouth0.gif")
+        str_eye = ("../resources/FaceGif/" + self.EyeStyle + "/eye0.gif")
+        self.MouthGif = QMovie(str_mouth)
+        self.EyeGif = QMovie(str_eye)
+        self.Eye.setMovie(self.EyeGif)
+        self.Mouth.setMovie(self.MouthGif)
+        self.MouthGif.setSpeed(100)
+        self.EyeGif.setSpeed(100)
+        self.EyeGif.start()
+        self.MouthGif.start()
         
     def _slot_reduce_menu(self):
         self.CustomFace_button.setVisible(self.isReduced)

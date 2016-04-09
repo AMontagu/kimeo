@@ -6,26 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>470</height>
+    <width>800</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>740</width>
-    <height>470</height>
+    <width>800</width>
+    <height>480</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>740</width>
-    <height>470</height>
+    <width>800</width>
+    <height>480</height>
    </size>
   </property>
   <property name="baseSize">
    <size>
-    <width>740</width>
-    <height>470</height>
+    <width>800</width>
+    <height>480</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,25 +34,25 @@
   <widget class="QWidget" name="MainWidget">
    <property name="minimumSize">
     <size>
-     <width>740</width>
-     <height>470</height>
+     <width>800</width>
+     <height>480</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>740</width>
-     <height>470</height>
+     <width>800</width>
+     <height>480</height>
     </size>
    </property>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="main_screen" native="true">
     <property name="geometry">
      <rect>
       <x>5</x>
       <y>50</y>
-      <width>730</width>
+      <width>780</width>
       <height>420</height>
      </rect>
     </property>
@@ -70,7 +70,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>730</width>
+       <width>780</width>
        <height>420</height>
       </rect>
      </property>
@@ -86,7 +86,7 @@
       <widget class="QPushButton" name="Light_button">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>30</x>
          <y>30</y>
          <width>80</width>
          <height>80</height>
@@ -105,7 +105,7 @@
       <widget class="QPushButton" name="Sound_button">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>30</x>
          <y>160</y>
          <width>80</width>
          <height>80</height>
@@ -124,7 +124,7 @@
       <widget class="QPushButton" name="Trajectory_button">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>30</x>
          <y>300</y>
          <width>80</width>
          <height>80</height>
@@ -143,7 +143,7 @@
       <widget class="QPushButton" name="Com_button">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>680</x>
          <y>160</y>
          <width>80</width>
          <height>80</height>
@@ -162,7 +162,7 @@
       <widget class="QPushButton" name="Parameter_button">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>680</x>
          <y>300</y>
          <width>80</width>
          <height>80</height>
@@ -181,7 +181,7 @@
       <widget class="QPushButton" name="CustomFace_button">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>680</x>
          <y>30</y>
          <width>80</width>
          <height>80</height>
@@ -212,33 +212,58 @@
       <widget class="QPushButton" name="Reduce_button">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>340</x>
          <y>0</y>
          <width>100</width>
          <height>30</height>
         </rect>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Reduce</string>
+       </property>
+       <property name="default">
+        <bool>false</bool>
        </property>
        <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="FaceDisplay">
+      <widget class="QLabel" name="Eye">
        <property name="geometry">
         <rect>
-         <x>200</x>
-         <y>70</y>
-         <width>347</width>
-         <height>120</height>
+         <x>140</x>
+         <y>50</y>
+         <width>520</width>
+         <height>165</height>
         </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="text">
         <string/>
        </property>
       </widget>
-      <zorder>FaceDisplay</zorder>
+      <widget class="QLabel" name="Mouth">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>260</y>
+         <width>340</width>
+         <height>120</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>Eye</zorder>
       <zorder>Com_button</zorder>
       <zorder>CustomFace_button</zorder>
       <zorder>Light_button</zorder>
@@ -246,6 +271,8 @@
       <zorder>Trajectory_button</zorder>
       <zorder>Parameter_button</zorder>
       <zorder>Reduce_button</zorder>
+      <zorder>Mouth</zorder>
+      <zorder>startGif</zorder>
      </widget>
      <widget class="QWidget" name="CustomFaceMenu">
       <widget class="QPushButton" name="CF_return_button">
@@ -296,7 +323,7 @@
       <widget class="QPushButton" name="CF_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -357,7 +384,7 @@
       <widget class="QPushButton" name="PF_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -416,7 +443,7 @@
       <widget class="QPushButton" name="TD_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -436,9 +463,9 @@
        <property name="geometry">
         <rect>
          <x>130</x>
-         <y>20</y>
-         <width>481</width>
-         <height>381</height>
+         <y>30</y>
+         <width>542</width>
+         <height>382</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="Trajectory_Layout">
@@ -446,6 +473,32 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
        </layout>
+      </widget>
+      <widget class="QLabel" name="Countdown">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>160</y>
+         <width>120</width>
+         <height>120</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>100</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
+       <property name="text">
+        <string>5</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="LightMenu">
@@ -471,7 +524,7 @@
       <widget class="QPushButton" name="LM_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -511,7 +564,7 @@
       <widget class="QPushButton" name="SM_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -555,7 +608,7 @@
       <widget class="QPushButton" name="Com_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -614,7 +667,7 @@
       <widget class="QPushButton" name="PM_ok_button">
        <property name="geometry">
         <rect>
-         <x>630</x>
+         <x>680</x>
          <y>320</y>
          <width>80</width>
          <height>80</height>
@@ -672,6 +725,24 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="startGif">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>480</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>startGif</zorder>
+   <zorder>main_screen</zorder>
+   <zorder>Battery</zorder>
+   <zorder>Connectivity</zorder>
+   <zorder>Sound_volume</zorder>
   </widget>
  </widget>
  <resources/>
