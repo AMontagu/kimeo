@@ -16,7 +16,7 @@ class MainWidget(QMainWindow):
         # Load and sets your ui file parameters
         loadUi(my_ui_path, self)
 
-        self.MainWidget.setStyleSheet(" #MainWidget { background-image: url(\" "+ repo + "resources/background.png\");}")
+        self.MainWidget.setStyleSheet(" #MainWidget { background-image: url(\"" + repo + "resources/background.png\");}")
         
         self.PageSelector.setCurrentIndex(0)
         self.isReduced = False
