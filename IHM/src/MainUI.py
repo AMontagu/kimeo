@@ -3,7 +3,7 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4.uic import loadUi
-from IHM.src.TrajectoryDrawer import QPainting_tool
+from TrajectoryDrawer import QPainting_tool
 from random import randint
 
 class MainWidget(QMainWindow):
