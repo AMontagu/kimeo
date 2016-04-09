@@ -5,6 +5,7 @@ from PyQt4.QtGui import QApplication
 import os
 import sys
 
+repo = "/home/pi/Desktop/Kimeo/kimeo/kimeo/"
 
 def launch():
     app = QApplication(sys.argv)

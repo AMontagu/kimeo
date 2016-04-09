@@ -289,7 +289,7 @@ class QPainting_tool(QGraphicsView):
     
     def clear_draw(self):
         self.Scene_.clear()
-        self.Robot_pict = QGraphicsPixmapItem(QPixmap("../resources/robottraj.png"))
+        self.Robot_pict = QGraphicsPixmapItem(QPixmap(repo + "resources/robottraj.png"))
         mat = QTransform()
         mat.translate(sizeW/2 - sizeRobot, sizeH/2 - sizeRobot)
         self.Robot_pict.setTransform(mat)
@@ -444,7 +444,7 @@ class QPainting_tool(QGraphicsView):
         self.Timer_.stop()
         if(self.Count >0):
             self.Count = self.Count - 1
-            #self.Counter.setPixmap(QPixmap("../resources/Counter/"+str(self.Count)+".png"))
+            #self.Counter.setPixmap(QPixmap(repo + "resources/Counter/"+str(self.Count)+".png"))
             self.Counter.setText(str(self.Count))
             self.Counter.setVisible(True)
             self.Timer_.start(1000)

@@ -6,15 +6,17 @@ from PyQt4.uic import loadUi
 from TrajectoryDrawer import QPainting_tool
 from random import randint
 
+repo = "/home/pi/Desktop/Kimeo/kimeo/kimeo/"
+
 class MainWidget(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         # Package resources provider
-        my_ui_path = "../MainWindow.ui"
+        my_ui_path = repo + "MainWindow.ui"
         # Load and sets your ui file parameters
         loadUi(my_ui_path, self)
-        
-        self.MainWidget.setStyleSheet(""" #MainWidget { background-image: url("../resources/background.png");}""")
+
+        self.MainWidget.setStyleSheet(""" #MainWidget { background-image: url(" """ + repo + """resources/background.png");}""")
         
         self.PageSelector.setCurrentIndex(0)
         self.isReduced = False
@@ -22,7 +24,7 @@ class MainWidget(QMainWindow):
         self.SetStyleButton()
         self.MouthStyle = "BlackMouth"
         self.EyeStyle = "EyeGlasses"
-        self.startGifMovie = QMovie("../resources/startkimeo.gif")
+        self.startGifMovie = QMovie(repo + "resources/startkimeo.gif")
         self.EyeGif = QMovie("")
         self.MouthGif = QMovie("")
         self.startGif.setMovie(self.startGifMovie)
@@ -69,8 +71,8 @@ class MainWidget(QMainWindow):
         self.update()
         
     def SetStyleButton(self):
-        str_return_icon = """  QPushButton {background-image : url("../resources/back_icon.png");}"""
-        str_ok_icon = """  QPushButton {background-image : url("../resources/ok_icon.png");}"""
+        str_return_icon = """  QPushButton {background-image : url(" """ + repo + """resources/back_icon.png");}"""
+        str_ok_icon = """  QPushButton {background-image : url(" """ + repo + """resources/ok_icon.png");}"""
         ##OK Button
         self.CF_ok_button.setStyleSheet(str_ok_icon)
         self.PF_ok_button.setStyleSheet(str_ok_icon)
@@ -90,15 +92,15 @@ class MainWidget(QMainWindow):
         self.PM_return_button.setStyleSheet(str_return_icon)
         
         ##Other
-        self.Light_button.setStyleSheet("""  QPushButton {background-image : url("../resources/Parameter_Icon.png");}""")
-        self.CustomFace_button.setStyleSheet(""" QPushButton {background-image : url("../resources/Parameter_Icon.png");}""")
-        self.Parameter_button.setStyleSheet(""" QPushButton {background-image : url("../resources/Parameter_Icon.png");}""")
-        self.Sound_button.setStyleSheet(""" QPushButton{background-image : url("../resources/Parameter_Icon.png");}""")
-        self.Trajectory_button.setStyleSheet(""" QPushButton {background-image : url("../resources/Draw_Icon.png");}""")
-        self.Com_button.setStyleSheet(""" QPushButton {background-image : url("../resources/Parameter_Icon.png");}""")
-        self.Battery.setPixmap(QPixmap("../resources/Icon_band/Battery_icon.png"))
-        self.Connectivity.setPixmap(QPixmap("../resources/Icon_band/Connect_icon.png"))
-        self.Sound_volume.setPixmap(QPixmap("../resources/Icon_band/Sound_icon.png"))
+        self.Light_button.setStyleSheet("""  QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.CustomFace_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.Parameter_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.Sound_button.setStyleSheet(""" QPushButton{background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.Trajectory_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Draw_Icon.png");}""")
+        self.Com_button.setStyleSheet(""" QPushButton {background-image : url(" """ + repo + """resources/Parameter_Icon.png");}""")
+        self.Battery.setPixmap(QPixmap(repo +"resources/Icon_band/Battery_icon.png"))
+        self.Connectivity.setPixmap(QPixmap(repo +"resources/Icon_band/Connect_icon.png"))
+        self.Sound_volume.setPixmap(QPixmap(repo +"resources/Icon_band/Sound_icon.png"))
         
     def ConnectButton(self):
         '''
@@ -173,8 +175,8 @@ class MainWidget(QMainWindow):
                      lambda: self.PageSelector.setCurrentIndex(0))
         
     def setFace(self):
-        str_mouth = ("../resources/FaceGif/" + self.MouthStyle + "/mouth0.gif")
-        str_eye = ("../resources/FaceGif/" + self.EyeStyle + "/eye0.gif")
+        str_mouth = (repo + "resources/FaceGif/" + self.MouthStyle + "/mouth0.gif")
+        str_eye = (repo + "resources/FaceGif/" + self.EyeStyle + "/eye0.gif")
         self.MouthGif = QMovie(str_mouth)
         self.EyeGif = QMovie(str_eye)
         self.Eye.setMovie(self.EyeGif)
