@@ -18,5 +18,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kimeo.settings")
 application = get_wsgi_application()
 
 
-proc = subprocess.Popen('./IHM/src/main.py', shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE,)
+proc = subprocess.Popen('./src/main.py', shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE,)
 #ihm.launch();
