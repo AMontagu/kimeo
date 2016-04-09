@@ -3,7 +3,7 @@ from django.utils.six import BytesIO
 from rest_framework.parsers import JSONParser
 import pypot.dynamixel
 import time
-import kimeo.IHM.src.main
+import IHM.src.main as ihm
 
 class RobotCommunication:
     class __RobotCommunication:
