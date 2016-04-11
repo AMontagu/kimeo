@@ -52,3 +52,8 @@ class Motor:
         time.sleep(duration)
         self.dxl_io.set_moving_speed({self.motorRight: 0.0})
         self.dxl_io.set_moving_speed({self.motorLeft: 0.0})
+
+
+if __name__ == '__main__':
+    motor = Motor(7,11)
+    motor.moveForward(100,100,3)

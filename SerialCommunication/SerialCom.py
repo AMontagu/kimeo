@@ -43,3 +43,13 @@ class SerialCom(threading.Thread):
 
     def closeSerial(self):
         self.ser.close()
+
+if __name__ == '__main__':
+    serialCom = SerialCom(1, "serialThread")
+    serialCom.daemon = True
+    serialCom.start()
+
+    while True:
+        time.sleep(3)
+        serialCom.write("testtestest")
+        serialCom.write("testtestest" + "\r\n")
