@@ -7,5 +7,5 @@ class QListPopUp(QComboBox):
     def __init__(self):
         QComboBox.__init__(self)
         
-    def showPopup():
-        
+    def showPopup(self):
+        pass
