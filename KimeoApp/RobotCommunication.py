@@ -3,6 +3,7 @@ from django.utils.six import BytesIO
 from rest_framework.parsers import JSONParser
 import pypot.dynamixel
 import time
+from IPC.ActionOnJson import *
 
 class RobotCommunication:
     class __RobotCommunication:
@@ -49,6 +50,8 @@ class RobotCommunication:
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
         print(face)
+        actionOnJson = ActionOnJson(fileForScreen)
+        actionJson.writeJson(dataSerialized)
 
     def makeSound(self, dataSerialized):
         sound = dataSerialized.data['soundName']  # data['soundName'], data['repeat']

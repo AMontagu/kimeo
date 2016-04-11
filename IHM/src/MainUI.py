@@ -6,7 +6,7 @@ from PyQt4.uic import loadUi
 from TrajectoryDrawer import QPainting_tool
 from random import randint
 
-repo = "/home/pi/Desktop/Kimeo/kimeo/kimeo/"
+repo = "/home/pi/Desktop/Kimeo/kimeo/IHM/"
 
 class MainWidget(QMainWindow):
     def __init__(self):

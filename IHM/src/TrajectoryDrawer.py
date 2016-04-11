@@ -5,7 +5,7 @@ from PyQt4.QtCore import *
 import math
 import pypot.dynamixel
 
-repo = "/home/pi/Desktop/Kimeo/kimeo/kimeo/"
+repo = "/home/pi/Desktop/Kimeo/kimeo/IHM/"
 
 
 sizeW = 540.0  
