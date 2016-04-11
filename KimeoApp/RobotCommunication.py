@@ -1,13 +1,10 @@
 #This is a singleton class for send action to the robot.
 from threading import Thread
-
-from django.utils.six import BytesIO
-from rest_framework.parsers import JSONParser
-import pypot.dynamixel
-import time
 from IPC.ActionOnJson import *
 from SerialCommunication.SerialCom import *
 from motorControl.motor import *
+from soundControl.sound import *
+
 
 class RobotCommunication:
     class __RobotCommunication:
@@ -65,8 +62,20 @@ class RobotCommunication:
 
     def makeSound(self, dataSerialized):
         sound = dataSerialized.data['soundName']  # data['soundName'], data['repeat']
+        repeat = dataSerialized.data['repeat']
+        th = Thread(target=playSound(sound, repeat))
+        th.daemon = True
+        th.start()
+
         print(sound)
 
     def makeLight(self, dataSerialized):
         turnOn = dataSerialized.data['turnOn']  # data['turnOn'], data['blink'], data['repeat'], data['intervalBlinking']
+        blink = dataSerialized.data['blink']
+        repeat = dataSerialized.data['repeat']
+        intervalBlinking = dataSerialized.data['intervalBlinking']
+        for t in self.threads:
+            print(t.getName())
+            if t.getName() == "serialThread":
+                t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)
         print(turnOn)
