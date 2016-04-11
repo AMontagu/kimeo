@@ -1,28 +1,35 @@
 #This is a singleton class for send action to the robot.
+from threading import Thread
+
 from django.utils.six import BytesIO
 from rest_framework.parsers import JSONParser
 import pypot.dynamixel
 import time
 from IPC.ActionOnJson import *
+from SerialCommunication.SerialCom import *
+from motorControl.motor import *
 
 class RobotCommunication:
     class __RobotCommunication:
         def __init__(self):
-            #here put all the variable of the electronical component then create function for each action
-            self.serialCom = "tty/com"  # need to be replace with good one
-            self.ports = pypot.dynamixel.get_available_ports()
-            if not self.ports:
-                raise IOError('No port available.')
-            self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
+            self.threads = []
+
+            threadSerialCom = SerialCom(threadID=1, name="serialThread")
+            threadSerialCom.daemon = True
+            threadSerialCom.start()
+            self.threads.append(threadSerialCom)
+            self.motorAction = Motor(7,11)
 
         def __str__(self):
-            return repr(self) + self.serialCom
+            return repr(self)
 
     instance = None
 
     def __init__(self):
         if not RobotCommunication.instance:
             RobotCommunication.instance = RobotCommunication.__RobotCommunication()
+        else:
+            pass # update class variable with parameter
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
@@ -32,20 +39,23 @@ class RobotCommunication:
         #TODO condition and process for handle message
 
     def move(self, dataSerialized):
-        typeMovement = dataSerialized.data['direction'] #data['direction'], data['rightSpeed'], data['leftSpeed'], data['duration']
+        typeMovement = dataSerialized.data['direction'] #dataSerialized.data['direction'], dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']
         print(typeMovement)
         if typeMovement == "Forward":
             print("in forward")
-            self.dxl_io.set_moving_speed({11: float(dataSerialized.data['rightSpeed'])})
-            time.sleep(float(dataSerialized.data['duration']))
-            self.dxl_io.set_moving_speed({11: 0.0})
-            #TODO call serial communication for move forward the robot with speed and duration apropriate
+            th = Thread(target=self.motorAction.moveForward(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+
         if typeMovement == "Backward":
-            pass
+            th = Thread(target=self.motorAction.moveBackward(dataSerialized.data['rightSpeed'], dataSerialized.data['duration'], dataSerialized.data['leftSpeed']))
+
         if typeMovement == "TurnLeft":
-            pass
+            th = Thread(target=self.motorAction.turnLeft(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+
         if typeMovement == "TurnRight":
-            pass
+            th = Thread(target=self.motorAction.turnRight(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+
+        th.daemon = True
+        th.start()
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
