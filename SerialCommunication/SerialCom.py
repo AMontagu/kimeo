@@ -12,8 +12,13 @@ class SerialCom(threading.Thread):
         self.name = name
         self.running = True
         self.open = False
-        print(self.serial_ports())
-        if self.serial_ports():
+        self.available = False
+        availablePort = self.serial_ports()
+        print(availablePort)
+        for p in availablePort:
+            if p == '/dev/ttyUSB1':
+                self.available = True
+        if self.available:
             self.ser = serial.Serial(
                 port=port,
                 baudrate=baudrate,
@@ -21,11 +26,9 @@ class SerialCom(threading.Thread):
                 stopbits=stopbits,
                 bytesize=bytesize
             )
-            self.available = True
         else:
             print("no port available")
             self.ser = None
-            self.available = False
 
 
     def run(self):
