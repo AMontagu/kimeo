@@ -59,4 +59,4 @@ class Motor:
 
 if __name__ == '__main__':
     motor = Motor(10,4,7)
-    motor.moveForward(100,100,5)
+    motor.moveForward(200,200,5)
