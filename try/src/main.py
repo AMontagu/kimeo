@@ -28,7 +28,7 @@ if __name__ == "__main__":
     print(sys.version_info)
 
     app = QApplication(sys.argv)
-    
+
     MainWindow = MainWidget()
     MainWindow.showFullScreen()
 
