@@ -27,11 +27,16 @@ class Motor:
                 self.setMotorWheelMode(motorHead)
                 self.motorHeadAvailable = True
             #self.dxl_io.set_wheel_mode((motorLeft,motorRight, motorHead))
-            print(self.dxl_io.get_control_mode((motorLeft,motorRight,motorHead)))
 
     def printInfo(self):
         print(pypot.dynamixel.get_available_ports())
         print(self.dxl_io.scan())
+        if self.motorRightAvailable:
+            print(self.dxl_io.get_control_mode((self.motorRight,)))
+        if self.motorLeftAvailable:
+            print(self.dxl_io.get_control_mode((self.motorLeft,)))
+        if self.motorHeadAvailable:
+            print(self.dxl_io.get_control_mode((self.motorHead,)))
 
     def moveForward(self, rightSpeed, leftSpeed, duration):
         if self.available:
