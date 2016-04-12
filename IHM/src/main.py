@@ -1,5 +1,6 @@
 import sys
 print(sys.version_info)
+print(sys.executable)
 
 from MainUI import MainWidget
 from PyQt4.QtGui import QApplication
