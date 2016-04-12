@@ -1,6 +1,5 @@
 import sys
-print(sys.version_info)
-print(sys.executable)
+sys.path.append('/home/pi/Desktop/Kimeo/kimeo/IPC')
 
 from MainUI import MainWidget
 from PyQt4.QtGui import QApplication
