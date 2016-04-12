@@ -15,7 +15,7 @@ class RobotCommunication:
             threadSerialCom.daemon = True
             threadSerialCom.start()
             self.threads.append(threadSerialCom)
-            self.motorAction = Motor(7,11)
+            self.motorAction = Motor(0,0,0)
 
         def __str__(self):
             return repr(self)
