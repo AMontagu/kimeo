@@ -12,6 +12,7 @@ class SerialCom(threading.Thread):
         self.name = name
         self.running = True
         self.open = False
+        print(self.serial_ports())
         if self.serial_ports():
             self.ser = serial.Serial(
                 port=port,
