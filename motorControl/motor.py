@@ -77,7 +77,7 @@ class Motor:
             self.dxl_io.set_moving_speed({self.motorLeft: 0.0})
 
     def setMotorWheelMode(self, motor):
-        self.dxl_io.set_wheel_mode((motor))
+        self.dxl_io.set_wheel_mode((motor,))
 
 
 if __name__ == '__main__':
