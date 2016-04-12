@@ -5,7 +5,7 @@ from MainUI import MainWidget
 from PyQt4.QtGui import QApplication
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
-from IPC.ActionOnJson import *
+from ActionOnJson import *
 
 class MyHandler(PatternMatchingEventHandler):
     patterns = ["*"]
