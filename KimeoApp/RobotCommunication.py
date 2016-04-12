@@ -8,25 +8,25 @@ from soundControl.sound import *
 
 class RobotCommunication:
     class __RobotCommunication:
-        def __init__(self):
+        def __init__(self, motorRight, motorLeft, motorHead):
             self.threads = []
 
             threadSerialCom = SerialCom(threadID=1, name="serialThread")
             threadSerialCom.daemon = True
             threadSerialCom.start()
             self.threads.append(threadSerialCom)
-            self.motorAction = Motor(0,0,0)
+            self.motorAction = Motor(motorRight, motorLeft, motorHead)
 
         def __str__(self):
             return repr(self)
 
     instance = None
 
-    def __init__(self):
+    def __init__(self, motorRight = 7, motorLeft = 0, motorHead = 0):
         if not RobotCommunication.instance:
-            RobotCommunication.instance = RobotCommunication.__RobotCommunication()
+            RobotCommunication.instance = RobotCommunication.__RobotCommunication(motorRight, motorLeft, motorHead)
         else:
-            pass # update class variable with parameter
+            RobotCommunication.instance.motorAction.initMotor(motorRight, motorLeft, motorHead)
 
     def __getattr__(self, name):
         return getattr(self.instance, name)

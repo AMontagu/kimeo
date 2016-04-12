@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 
 import os
 #import subprocess
-from KimeoApp.RobotCommunication import *
+from kimeo.settings import *
+if LINUX:
+    from KimeoApp.RobotCommunication import *
 
 from django.core.wsgi import get_wsgi_application
 
@@ -17,7 +19,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kimeo.settings")
 
 application = get_wsgi_application()
 
-robotCommunication = RobotCommunication()
+if LINUX:
+    robotCommunication = RobotCommunication()
 
 #proc = subprocess.Popen('python /home/pi/Desktop/Kimeo/kimeo/kimeo/src/main.py', shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE,)
 #proc = subprocess.call(['python', '/home/pi/Desktop/Kimeo/kimeo/kimeo/src/main.py'])

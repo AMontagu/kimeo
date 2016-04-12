@@ -37,14 +37,16 @@ jQuery(function($) {
         $('#btnSendMovement').on('click', function() {
             var sliderSpeedRight = ($('#speedRight').val() == "") ? 100 : $('#speedRight').val();
             var sliderSpeedLeft = ($('#speedLeft').val() == "") ? 100 : $('#speedLeft').val();
+            var sliderHeadPosition = ($('#headPosition').val() == "") ? 45 : $('#headPosition').val();
             var direction = $('#selectDirection').val();
             var duration = ($('#inputDuration').val() == "") ? 0 : parseInt($('#inputDuration').val());
             console.log('press btn');
             console.log('sliderSpeedRight = ' + sliderSpeedRight);
             console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
             console.log('direction = ' + direction);
             console.log('duration = ' + duration);
-            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "duration": duration};
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration};
             ajaxLauncher("movements/", data);
         });
 

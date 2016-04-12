@@ -17,26 +17,36 @@ class Motor:
             self.motorLeftAvailable = False
             self.motorHead = motorHead
             self.motorHeadAvailable = False
-            if self.motorRight != 0:
-                self.setMotorWheelMode(self.motorRight)
+            self.initMotor(motorRight,motorLeft,motorHead)
+
+    def initMotor(self, motorRight, motorLeft, motorHead):
+        self.motorRight = motorRight
+        self.motorRightAvailable = False
+        self.motorLeft = motorLeft
+        self.motorLeftAvailable = False
+        self.motorHead = motorHead
+        self.motorHeadAvailable = False
+        if self.motorRight != 0:
+            self.setMotorWheelMode(self.motorRight)
             self.motorRightAvailable = True
-            if self.motorLeft != 0:
-                self.setMotorWheelMode(self.motorLeft)
-                self.motorLeftAvailable = True
-            if self.motorHead != 0:
-                self.setMotorWheelMode(motorHead)
-                self.motorHeadAvailable = True
-            #self.dxl_io.set_wheel_mode((motorLeft,motorRight, motorHead))
+        if self.motorLeft != 0:
+            self.setMotorWheelMode(self.motorLeft)
+            self.motorLeftAvailable = True
+        if self.motorHead != 0:
+            self.setMotorWheelMode(motorHead)
+            self.motorHeadAvailable = True
+            # self.dxl_io.set_wheel_mode((motorLeft,motorRight, motorHead))
 
     def printInfo(self):
         print(pypot.dynamixel.get_available_ports())
         print(self.dxl_io.scan())
-        if self.motorRightAvailable:
-            print(self.dxl_io.get_control_mode((self.motorRight,)))
-        if self.motorLeftAvailable:
-            print(self.dxl_io.get_control_mode((self.motorLeft,)))
-        if self.motorHeadAvailable:
-            print(self.dxl_io.get_control_mode((self.motorHead,)))
+        if self.available:
+            if self.motorRightAvailable:
+                print(self.dxl_io.get_control_mode((self.motorRight,)))
+            if self.motorLeftAvailable:
+                print(self.dxl_io.get_control_mode((self.motorLeft,)))
+            if self.motorHeadAvailable:
+                print(self.dxl_io.get_control_mode((self.motorHead,)))
 
     def moveForward(self, rightSpeed, leftSpeed, duration):
         if self.available:

@@ -24,7 +24,7 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 class MovementSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Movement
-        fields = ('direction', 'rightSpeed', 'leftSpeed', 'duration')
+        fields = ('direction', 'rightSpeed', 'leftSpeed', 'headPosition', 'duration')
 
 
 class LightSerializer(serializers.HyperlinkedModelSerializer):

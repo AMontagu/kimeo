@@ -11,6 +11,7 @@ class Movement(models.Model):
     direction = models.CharField(max_length=100) #type of movement : forward, backward, left, right
     rightSpeed = models.IntegerField()
     leftSpeed = models.IntegerField()
+    headPosition = models.IntegerField()
     duration = models.IntegerField()
 
 class Light(models.Model):

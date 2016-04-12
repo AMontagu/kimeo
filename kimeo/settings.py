@@ -17,6 +17,12 @@ contact.kimeo@gmail.com
 kimeoPass2016$
 """
 import os
+import sys
+
+if sys.platform.startswith('win'):
+    LINUX = False
+else:
+    LINUX = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -99,12 +105,20 @@ WSGI_APPLICATION = 'kimeo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/pi/Desktop/Kimeo/kimeo/db.sqlite3',
+if LINUX:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': '/home/pi/Desktop/Kimeo/kimeo/db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+    }
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

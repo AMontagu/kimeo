@@ -1,23 +1,18 @@
-from django.db.models import Count
-from django.http import HttpResponse
-import django
-from kimeo.settings import *
-from django.shortcuts import render
 from django.core.mail import send_mail
-from KimeoApp.forms import ContactForm
-
-from django.contrib.auth.models import User, Group
-from rest_framework import status
-from rest_framework import viewsets
-from rest_framework.decorators import detail_route, list_route
-from rest_framework.response import Response
-from rest_framework import viewsets
-from rest_framework.views import APIView
+from django.db.models import Count
 from django.http import Http404
-from KimeoApp.serializers import *
+from django.shortcuts import render
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from KimeoApp.forms import ContactForm
 from KimeoApp.models import *
-from KimeoApp.RobotCommunication import *
-from rest_framework.decorators import api_view
+from KimeoApp.serializers import *
+from kimeo.settings import *
+
+if LINUX:
+    from KimeoApp.RobotCommunication import *
 
 ### ------------- Navigation views -----------------------------
 def home(request):
@@ -109,8 +104,9 @@ class MessageList(APIView):
         serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            robotCommunication = RobotCommunication()
-            robotCommunication.receiveMessage(serializer);
+            if LINUX:
+                robotCommunication = RobotCommunication()
+                robotCommunication.receiveMessage(serializer);
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -156,8 +152,9 @@ class MovementList(APIView):
         serializer = MovementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            robotCommunication = RobotCommunication()
-            robotCommunication.move(serializer)
+            if LINUX:
+                robotCommunication = RobotCommunication()
+                robotCommunication.move(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -202,8 +199,9 @@ class SoundList(APIView):
         serializer = SoundSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            robotCommunication = RobotCommunication()
-            robotCommunication.makeSound(serializer)
+            if LINUX:
+                robotCommunication = RobotCommunication()
+                robotCommunication.makeSound(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -249,8 +247,9 @@ class LightList(APIView):
         serializer = LightSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            robotCommunication = RobotCommunication()
-            robotCommunication.makeLight(serializer)
+            if LINUX:
+                robotCommunication = RobotCommunication()
+                robotCommunication.makeLight(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -296,8 +295,9 @@ class ScreentList(APIView):
         serializer = ScreenSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            robotCommunication = RobotCommunication()
-            robotCommunication.changeRobotFace(serializer)
+            if LINUX:
+                robotCommunication = RobotCommunication()
+                robotCommunication.changeRobotFace(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
