@@ -14,7 +14,7 @@ class MyHandler(PatternMatchingEventHandler):
         print(event.src_path, event.event_type)
         if(event.src_path == fileForScreen):
             actionOnJson = ActionOnJson(fileForScreen)
-            jsonText = actionJson.getJson()
+            jsonText = actionOnJson.getJson()
             # imageName = jsonText["imageName"]
             # timeToStay = jsonText["timeToStay"]
             # stay = jsonText["stay"]
