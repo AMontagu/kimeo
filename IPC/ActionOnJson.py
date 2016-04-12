@@ -2,7 +2,7 @@ import json
 
 fileForScreen = "/home/pi/Desktop/Kimeo/kimeo/IPC/data.json"
 
-class ScreenTest:
+class ScreenJsonSerializer:
     def __init__(self, imageName, stay, timeToStay):
         self.imageName = imageName
         self.stay = stay
@@ -105,6 +105,6 @@ class ActionOnJson:
 if __name__ == '__main__':
     actionJson = ActionOnJson("data.json")
 
-    screen = ScreenTest("bla", True, 3)
+    screen = ScreenJsonSerializer("bla", True, 3)
 
     actionJson.writeJson(screen.__dict__)

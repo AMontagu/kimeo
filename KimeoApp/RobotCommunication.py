@@ -56,9 +56,12 @@ class RobotCommunication:
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
+        stay = dataSerialized.data['stay']
+        timeToStay = dataSerialized.data['timeToStay']
         print(face)
         actionOnJson = ActionOnJson(fileForScreen)
-        actionOnJson.writeJson(dataSerialized)
+        screenJsonSerializer = ScreenJsonSerializer(face,stay,timeToStay)
+        actionOnJson.writeJson(screenJsonSerializer.__dict__)
 
     def makeSound(self, dataSerialized):
         sound = dataSerialized.data['soundName']  # data['soundName'], data['repeat']
