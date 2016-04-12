@@ -1,6 +1,8 @@
 import threading
 import time
 import serial
+import sys
+import glob
 
 
 class SerialCom(threading.Thread):
@@ -9,47 +11,92 @@ class SerialCom(threading.Thread):
         self.threadID = threadID
         self.name = name
         self.running = True
-        self.ser = serial.Serial(
-            port=port,
-            baudrate=baudrate,
-            parity=parity,
-            stopbits=stopbits,
-            bytesize=bytesize
-        )
+        self.open = False
+        if self.serial_ports():
+            self.ser = serial.Serial(
+                port=port,
+                baudrate=baudrate,
+                parity=parity,
+                stopbits=stopbits,
+                bytesize=bytesize
+            )
+            self.available = True
+        else:
+            print("no port available")
+            self.ser = None
+            self.available = False
+
 
     def run(self):
         while self.running:
-            self.initSerial()
+            self.open = self.initSerial()
 
             try:
                 while True:
-                    input = self.ser.readline()
-                    print(input())
-                    if(input == "test"):
-                        print("receive test")
-                    time.sleep(2)
+                    if self.open:
+                        input = self.ser.readline()
+                        print(input())
+                        if(input == "test"):
+                            print("receive test")
+                        time.sleep(2)
             except IOError:
                 pass
             self.closeSerial()
 
     def write(self, data):
-        #maybe need ths line:
-        #self.ser.write(data + '\r\n')
-        print("send this : " + data)
-        self.ser.write(data)
+        if self.open:
+            #maybe need ths line:
+            #self.ser.write(data + '\r\n')
+            print("send this : " + data)
+            self.ser.write(data)
 
     def initSerial(self):
-        self.ser.isOpen()
+        if self.available:
+            self.ser.isOpen()
+            self.open = True
+        return self.open
 
     def closeSerial(self):
-        self.ser.close()
+        if self.available:
+            self.ser.close()
+            self.open = False
+
+    def serial_ports(self):
+        """ Lists serial port names
+
+            :raises EnvironmentError:
+                On unsupported or unknown platforms
+            :returns:
+                A list of the serial ports available on the system
+        """
+        if sys.platform.startswith('win'):
+            ports = ['COM%s' % (i + 1) for i in range(256)]
+        elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+            # this excludes your current terminal "/dev/tty"
+            ports = glob.glob('/dev/tty[A-Za-z]*')
+        elif sys.platform.startswith('darwin'):
+            ports = glob.glob('/dev/tty.*')
+        else:
+            raise EnvironmentError('Unsupported platform')
+
+        result = []
+        for port in ports:
+            try:
+                s = serial.Serial(port)
+                s.close()
+                result.append(port)
+            except (OSError, serial.SerialException):
+                pass
+        return result
 
 if __name__ == '__main__':
     serialCom = SerialCom(1, "serialThread")
+
     serialCom.daemon = True
     serialCom.start()
 
     while True:
-        time.sleep(3)
+        time.sleep(1)
+        print(serialCom.serial_ports())
         serialCom.write("testtestest")
         serialCom.write("testtestest" + "\r\n")
