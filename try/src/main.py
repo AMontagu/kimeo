@@ -1,9 +1,9 @@
 import sys
+
+import time
+
 print(sys.version_info)
 print(sys.executable)
-
-from MainUI import MainWidget
-from PyQt4.QtGui import QApplication
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
 from IPC.ActionOnJson import *
@@ -27,17 +27,13 @@ if __name__ == "__main__":
 
     print(sys.version_info)
 
-    app = QApplication(sys.argv)
-
-    MainWindow = MainWidget()
-    MainWindow.showFullScreen()
-
     observer = Observer()
     observer.schedule(MyHandler(), '/home/pi/Desktop/Kimeo/kimeo/IPC')
     observer.start()
 
     try:
-        app.exec_()
+        while True:
+            time.sleep(3)
     except KeyboardInterrupt:
         observer.stop()
 
