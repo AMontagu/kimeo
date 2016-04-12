@@ -1,9 +1,8 @@
-#!/usr/bin/python
+import sys
+print(sys.version_info)
 
 from MainUI import MainWidget
 from PyQt4.QtGui import QApplication
-import os
-import sys
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
 from IPC.ActionOnJson import *
