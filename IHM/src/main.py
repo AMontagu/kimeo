@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/pi/Desktop/Kimeo/kimeoenv/bin/python
 
 import sys
 print(sys.version_info)
