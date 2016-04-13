@@ -45,10 +45,11 @@ class SerialCom(threading.Thread):
                 while True:
                     if self.open:
                         input = self.ser.readline()
-                        print(input)
-                        if(input == "test"):
-                            print("receive test")
-                        time.sleep(2)
+                        if(input != ""):
+                            print(input)
+                            if(input == "test"):
+                                print("receive test")
+                        time.sleep(1)
             except IOError:
                 pass
             self.closeSerial()
