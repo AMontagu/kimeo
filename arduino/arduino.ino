@@ -1,10 +1,11 @@
 String inByte;         // incoming serial byte
 bool newByteComing = false;
+char string[5] = {0};
 
 void setup() {
   // start serial port at 9600 bps and wait for port to open:
   pinMode(13, OUTPUT);
-  Serial.begin(9600);
+  Serial.begin(9600, SERIAL_7O2);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }

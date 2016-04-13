@@ -6,7 +6,7 @@ import glob
 
 
 class SerialCom(threading.Thread):
-    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_TWO, bytesize = serial.EIGHTBITS):
+    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_ODD, stopbits = serial.STOPBITS_TWO, bytesize = serial.SEVENBITS):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
