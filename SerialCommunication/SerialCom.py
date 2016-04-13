@@ -108,8 +108,8 @@ if __name__ == '__main__':
     while True:
         time.sleep(1)
         print(serialCom.serial_ports())
-        serialCom.write("ligthOn")
+        serialCom.write("ligthOn" + "\r\n")
         time.sleep(3)
-        serialCom.write("ligthOff")
+        serialCom.write("ligthOff" + "\r\n")
         time.sleep(3)
         #serialCom.write("testtestest" + "\r\n")
