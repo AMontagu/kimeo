@@ -1,8 +1,9 @@
-char inByte;         // incoming serial byte
+String inByte;         // incoming serial byte
 bool newByteComing = false;
 
 void setup() {
   // start serial port at 9600 bps and wait for port to open:
+  pinMode(13, OUTPUT);
   Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
@@ -15,14 +16,18 @@ void loop() {
   // if we get a valid byte, read analog ins:
   while (Serial.available() > 0) {
     // get incoming byte:
-    inByte = Serial.read();
+    inByte = Serial.readString();
     Serial.print(inByte);
     newByteComing = true;
-    Serial.print(Serial.available());
   }
   if(newByteComing){
     Serial.println();
     newByteComing = false;
+  }
+  if(inByte == "lightOn"){
+    digitalWrite(13, HIGH);
+  }else if (inByte == "lightOff"){
+    digitalWrite(13, LOW);
   }
   
 }
