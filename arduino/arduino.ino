@@ -1,11 +1,13 @@
-String inByte;         // incoming serial byte
+String inByteString;         // incoming serial byte
 bool newByteComing = false;
-char string[5] = {0};
+char myString[10] = "";
+int inByte;
+int counter = 0;
 
 void setup() {
   // start serial port at 9600 bps and wait for port to open:
   pinMode(13, OUTPUT);
-  Serial.begin(9600, SERIAL_7O2);
+  Serial.begin(9600, SERIAL_8N1);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -15,24 +17,49 @@ void setup() {
 
 void loop() {
   // if we get a valid byte, read analog ins:
-  if (Serial.available() > 0) {
+  while (Serial.available() > 0) {
     // get incoming byte:
-    inByte = Serial.readString();
-    Serial.print(inByte);
-    Serial.print(" from arduino");
+    inByte = Serial.read();
+    Serial.println(inByte,DEC);
+    char inByteChar = (char) inByte;
+    Serial.println(inByteChar);
+    Serial.println(" from arduino");
     //Serial.print(inByte,DEC);
     newByteComing = true;
+    myString[counter] = inByteChar;
+    counter++;
+    delay(50);
   }
   if(newByteComing){
-    if(inByte == "lightOn"){
+    for(int i=0;i<10;i++){
+      Serial.println("print string");
+      Serial.println(myString[i]);
+    }
+    Serial.println(myString);
+    char char1 = myString[0] ;
+    if(strcmp (myString,"lightOn") == 0){
+      Serial.println("lightwork on with strcmp");
+      digitalWrite(13, HIGH);
+    }
+    if(strcmp (myString,"lightOff") == 0){
+      Serial.println("lightwork off with strcmp");
+      digitalWrite(13, LOW);
+    }
+    /*if(strcmp (char1,"L") == 0){
+      Serial.println("lightwork with array");
+    }*/
+    /*if(inByte == "lightOn"){
       Serial.print(" turn on");
       digitalWrite(13, HIGH);
     }else if (inByte == "lightOff"){
       Serial.print(" turn off");
       digitalWrite(13, LOW);
-    }
-    Serial.println();
+    }*/
     newByteComing = false;
+    counter = 0;
+    for(int i=0;i<10;i++){
+      myString[i] = (char)0;
+    }
   }
 }
 
