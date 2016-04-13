@@ -14,10 +14,11 @@ void setup() {
 
 void loop() {
   // if we get a valid byte, read analog ins:
-  while (Serial.available() > 0) {
+  if (Serial.available() > 0) {
     // get incoming byte:
     inByte = Serial.readString();
     Serial.print(inByte);
+    //Serial.print(inByte,DEC);
     newByteComing = true;
   }
   if(newByteComing){

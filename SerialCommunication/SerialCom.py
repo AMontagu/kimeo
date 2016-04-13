@@ -6,7 +6,7 @@ import glob
 
 
 class SerialCom(threading.Thread):
-    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_ODD, stopbits = serial.STOPBITS_TWO, bytesize = serial.SEVENBITS):
+    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE, bytesize = serial.EIGHTBITS):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
@@ -109,8 +109,8 @@ if __name__ == '__main__':
     while True:
         time.sleep(1)
         print(serialCom.serial_ports())
-        serialCom.write("ligthOn" + "\n")
+        serialCom.write("ligthOn")
         time.sleep(3)
-        serialCom.write("ligthOff" + "\n")
+        serialCom.write("ligthOff")
         time.sleep(3)
         #serialCom.write("testtestest" + "\r\n")
