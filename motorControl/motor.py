@@ -5,7 +5,7 @@ import time
 class Motor:
     def __init__(self, motorRight = 7, motorLeft = 4, motorHead = 11):
         self.ports = pypot.dynamixel.get_available_ports()
-        if not self.ports:
+        if not self.ports or self.ports[0] == "/dev/ttyAMAO":
             self.available = False
             print('No port available for motor.')
         else:
@@ -18,6 +18,7 @@ class Motor:
             self.motorHead = motorHead
             self.motorHeadAvailable = False
             self.initMotor(motorRight,motorLeft,motorHead)
+            self.oldPositionhead = 45
 
     def initMotor(self, motorRight, motorLeft, motorHead):
         self.motorRight = motorRight
@@ -79,6 +80,12 @@ class Motor:
             self.move(rightSpeed, -leftSpeed, duration)
         else:
             print("can't move no open port are available")
+
+    def moveHead(self, positionHead, headSpeed = 100.0):
+        positionHead = int(positionHead)
+        self.dxl_io.set_moving_speed({self.motorHead, headSpeed})
+        self.oldPositionhead = positionHead
+        #TODO calculate time with inclinaison
 
     def move(self, rightSpeed, leftSpeed, duration):
         if self.motorRightAvailable:

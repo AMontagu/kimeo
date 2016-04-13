@@ -16,6 +16,10 @@ class RobotCommunication:
             threadSerialCom.start()
             self.threads.append(threadSerialCom)
             self.motorAction = Motor(motorRight, motorLeft, motorHead)
+            self.oldHeadPosition = 80
+            self.oldMotorRight = motorRight
+            self.oldMotorLeft = motorLeft
+            self.oldMotorHead = motorHead
 
         def __str__(self):
             return repr(self)
@@ -26,7 +30,8 @@ class RobotCommunication:
         if not RobotCommunication.instance:
             RobotCommunication.instance = RobotCommunication.__RobotCommunication(motorRight, motorLeft, motorHead)
         else:
-            RobotCommunication.instance.motorAction.initMotor(motorRight, motorLeft, motorHead)
+            if(motorRight != RobotCommunication.instance.oldMotorRight or motorLeft != RobotCommunication.instance.oldMotorLeft or motorHead != RobotCommunication.instance.oldMotorHead):
+                RobotCommunication.instance.motorAction.initMotor(motorRight, motorLeft, motorHead)
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
@@ -36,7 +41,8 @@ class RobotCommunication:
         #TODO condition and process for handle message
 
     def move(self, dataSerialized):
-        typeMovement = dataSerialized.data['direction'] #dataSerialized.data['direction'], dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']
+        typeMovement = dataSerialized.data['direction'] #dataSerialized.data['direction'], dataSerialized.data['rightSpeed'], dataSerialized.data['headPosition'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']
+        positionHead = dataSerialized.data['headPosition']
         print(typeMovement)
         if typeMovement == "Forward":
             print("in forward")
@@ -53,6 +59,8 @@ class RobotCommunication:
 
         th.daemon = True
         th.start()
+        if positionHead != self.oldHeadPosition:
+            thHead = Thread(target=self.motorAction.)
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
