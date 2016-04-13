@@ -18,19 +18,21 @@ void loop() {
     // get incoming byte:
     inByte = Serial.readString();
     Serial.print(inByte);
+    Serial.print(" from arduino");
     //Serial.print(inByte,DEC);
     newByteComing = true;
   }
   if(newByteComing){
+    if(inByte == "lightOn"){
+      Serial.print(" turn on");
+      digitalWrite(13, HIGH);
+    }else if (inByte == "lightOff"){
+      Serial.print(" turn off");
+      digitalWrite(13, LOW);
+    }
     Serial.println();
     newByteComing = false;
   }
-  if(inByte == "lightOn"){
-    digitalWrite(13, HIGH);
-  }else if (inByte == "lightOff"){
-    digitalWrite(13, LOW);
-  }
-  
 }
 
 
