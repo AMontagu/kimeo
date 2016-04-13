@@ -24,10 +24,10 @@ class SerialCom(threading.Thread):
                 self.ser = serial.Serial(
                     port=port,
                     baudrate=baudrate,
-                    parity=parity,
-                    stopbits=stopbits,
-                    bytesize=bytesize
                 )
+                """parity=parity,
+                    stopbits=stopbits,
+                    bytesize=bytesize"""
                 #self.ser.write("testOpen")
             except IOError as e:
                 print(e)
