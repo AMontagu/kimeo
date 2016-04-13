@@ -28,7 +28,7 @@ class SerialCom(threading.Thread):
                     stopbits=stopbits,
                     bytesize=bytesize
                 )
-                self.ser.write("testOpen")
+                #self.ser.write("testOpen")
             except IOError as e:
                 print(e)
 
@@ -45,7 +45,7 @@ class SerialCom(threading.Thread):
                 while True:
                     if self.open:
                         input = self.ser.readline()
-                        print(input())
+                        print(input)
                         if(input == "test"):
                             print("receive test")
                         time.sleep(2)
