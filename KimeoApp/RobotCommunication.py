@@ -60,7 +60,7 @@ class RobotCommunication:
         th.daemon = True
         th.start()
         if positionHead != self.oldHeadPosition:
-            thHead = Thread(target=self.motorAction.)
+            thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
