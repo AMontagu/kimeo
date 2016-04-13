@@ -6,7 +6,7 @@ import glob
 
 
 class SerialCom(threading.Thread):
-    def __init__(self, threadID, name, port = '/dev/ttyUSB1', baudrate = 9600, parity = serial.PARITY_ODD, stopbits = serial.STOPBITS_TWO, bytesize = serial.SEVENBITS):
+    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_ODD, stopbits = serial.STOPBITS_TWO, bytesize = serial.SEVENBITS):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
@@ -16,16 +16,22 @@ class SerialCom(threading.Thread):
         availablePort = self.serial_ports()
         print(availablePort)
         for p in availablePort:
-            if p == '/dev/ttyUSB1':
+            if p.startswith('/dev/ttyACM'):
+                print("start with good start")
                 self.available = True
         if self.available:
-            self.ser = serial.Serial(
-                port=port,
-                baudrate=baudrate,
-                parity=parity,
-                stopbits=stopbits,
-                bytesize=bytesize
-            )
+            try:
+                self.ser = serial.Serial(
+                    port=port,
+                    baudrate=baudrate,
+                    parity=parity,
+                    stopbits=stopbits,
+                    bytesize=bytesize
+                )
+                self.ser.write("testOpen")
+            except IOError as e:
+                print(e)
+
         else:
             print("no port available")
             self.ser = None
