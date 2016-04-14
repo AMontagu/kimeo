@@ -84,9 +84,9 @@ class Motor:
     def moveHead(self, positionHead, headSpeed = 100.0):
         positionHead = int(positionHead)
         self.dxl_io.set_moving_speed({self.motorHead, headSpeed})
-        self.oldPositionhead = positionHead
-        #TODO calculate time with inclinaison
+        # TODO calculate time with inclinaison
         self.dxl_io.set_moving_speed({self.motorHead, 0})
+        self.oldPositionhead = positionHead
 
     def move(self, rightSpeed, leftSpeed, duration):
         if self.motorRightAvailable:

@@ -11,15 +11,16 @@ class RobotCommunication:
         def __init__(self, motorRight, motorLeft, motorHead):
             self.threads = []
 
-            threadSerialCom = SerialCom(threadID=1, name="serialThread")
-            threadSerialCom.daemon = True
-            threadSerialCom.start()
-            self.threads.append(threadSerialCom)
+            self.threadSerialCom = SerialCom(threadID=1, name="serialThread")
+            self.threadSerialCom.daemon = True
+            self.threadSerialCom.start()
+            self.threads.append(self.threadSerialCom)
             self.motorAction = Motor(motorRight, motorLeft, motorHead)
             self.oldHeadPosition = 80
             self.oldMotorRight = motorRight
             self.oldMotorLeft = motorLeft
             self.oldMotorHead = motorHead
+            playSound("sonKimeo/ON_OFF/on.ogg")
 
         def __str__(self):
             return repr(self)
@@ -44,6 +45,9 @@ class RobotCommunication:
         typeMovement = dataSerialized.data['direction'] #dataSerialized.data['direction'], dataSerialized.data['rightSpeed'], dataSerialized.data['headPosition'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']
         positionHead = dataSerialized.data['headPosition']
         print(typeMovement)
+        soundThread = Thread(target=playSound("sonKimeo/robotRoule/mouv1.ogg"))
+        soundThread.daemon = True
+        soundThread.start()
         if typeMovement == "Forward":
             print("in forward")
             th = Thread(target=self.motorAction.moveForward(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
@@ -85,8 +89,12 @@ class RobotCommunication:
         blink = dataSerialized.data['blink']
         repeat = dataSerialized.data['repeat']
         intervalBlinking = dataSerialized.data['intervalBlinking']
-        for t in self.threads:
+        """for t in self.threads:
             print(t.getName())
             if t.getName() == "serialThread":
-                t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)
+                t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)"""
+        if turnOn:
+            self.threadSerialCom.write("lightOn")
+        else:
+            self.threadSerialCom.write("lightOff")
         print(turnOn)

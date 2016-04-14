@@ -3,6 +3,7 @@ import time
 import serial
 import sys
 import glob
+from soundControl.sound import *
 
 
 class SerialCom(threading.Thread):
@@ -52,6 +53,9 @@ class SerialCom(threading.Thread):
                             print(input)
                             if(input == "test"):
                                 print("receive test")
+                            if(input == "knock"):
+                                print("knock")
+                                playSound("sonKimeo/sensor/sensor1.ogg")
                         time.sleep(1)
             except IOError:
                 pass
