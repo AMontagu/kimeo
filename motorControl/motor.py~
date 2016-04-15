@@ -34,7 +34,7 @@ class Motor:
             self.setMotorWheelMode(self.motorLeft)
             self.motorLeftAvailable = True
         if self.motorHead != 0:
-            self.setMotorWheelMode(motorHead)
+            self.setMotorJointMode(motorHead)
             self.motorHeadAvailable = True
             # self.dxl_io.set_wheel_mode((motorLeft,motorRight, motorHead))
 
