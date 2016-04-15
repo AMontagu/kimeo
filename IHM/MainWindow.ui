@@ -272,7 +272,6 @@
       <zorder>Parameter_button</zorder>
       <zorder>Reduce_button</zorder>
       <zorder>Mouth</zorder>
-      <zorder>startGif</zorder>
      </widget>
      <widget class="QWidget" name="CustomFaceMenu">
       <widget class="QPushButton" name="CF_return_button">
@@ -738,11 +737,31 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="close_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
    <zorder>startGif</zorder>
    <zorder>main_screen</zorder>
    <zorder>Battery</zorder>
    <zorder>Connectivity</zorder>
    <zorder>Sound_volume</zorder>
+   <zorder>close_button</zorder>
   </widget>
  </widget>
  <resources/>

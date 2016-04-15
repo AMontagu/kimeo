@@ -42,8 +42,6 @@ class MainWidget(QMainWindow):
         self.TrajectoryDrawer.resize(540,380)
         self.Trajectory_Layout.addWidget(self.TrajectoryDrawer)
         self.TrajectoryDrawer.SetLabel(self.Countdown)
-        self.connect(self.close_button,SIGNAL("clicked()"),
-		     self.close())
         
 
     def mousePressEvent(self, event):

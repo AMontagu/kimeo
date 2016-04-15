@@ -27,7 +27,7 @@ class RobotCommunication:
 
     instance = None
 
-    def __init__(self, motorRight = 4, motorLeft = 10, motorHead = 11):
+    def __init__(self, motorRight = 7, motorLeft = 0, motorHead = 0):
         if not RobotCommunication.instance:
             RobotCommunication.instance = RobotCommunication.__RobotCommunication(motorRight, motorLeft, motorHead)
         else:
