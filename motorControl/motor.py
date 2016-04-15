@@ -87,10 +87,10 @@ class Motor:
         GearRatio_ = 3.0
         self.dxl_io.set_moving_speed({self.motorHead, headSpeed})
         if((positionHead - self.oldPositionhead)<0):
-			headSpeed = -headSpeed
+           headSpeed = -headSpeed
 				
-		time_ = (positionHead - self.oldPositionhead)*GearRatio / headSpeed
-		time.sleep(time_)
+        time_ = (positionHead - self.oldPositionhead)*GearRatio / headSpeed
+        time.sleep(time_)
         self.dxl_io.set_moving_speed({self.motorHead, 0})
         self.oldPositionhead = positionHead
 
