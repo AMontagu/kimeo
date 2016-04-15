@@ -3,7 +3,10 @@ from pygame import mixer
 
 def playSound(fileName, repeat=1):
     for r in range(repeat):
-        mixer.init()
+		try:
+			mixer.init()
+		except:
+			return
         mixer.music.load(fileName)
         mixer.music.play()
         while mixer.music.get_busy() == True:
