@@ -76,6 +76,7 @@ class Motor:
     def move(self, rightSpeed, leftSpeed, duration, continu):
         if self.available:
             if self.motorRightAvailable:
+                print("move")
                 self.dxl_io.set_moving_speed({self.motorRight: rightSpeed})
             else:
                 print("can't motor right not available")
@@ -95,6 +96,7 @@ class Motor:
     def stop(self):
         if self.available:
             if self.motorRightAvailable:
+                print("stop")
                 self.dxl_io.set_moving_speed({self.motorRight: 0})
             if self.motorLeftAvailable:
                 self.dxl_io.set_moving_speed({self.motorLeft: 0})
