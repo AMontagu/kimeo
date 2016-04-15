@@ -28,7 +28,7 @@ class MyHandler(PatternMatchingEventHandler):
                 th = Thread(target=playSound("happy/happy.ogg"))
                 th.daemon = True
                 th.start()
-            print("Ludo ! do something in the conditional expression above !")
+            print("Ludo do something in the conditional expression above !")
 
 repo = "/home/pi/Desktop/Kimeo/kimeo/IHM/"
 
