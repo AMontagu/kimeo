@@ -25,7 +25,7 @@ class MainWidget(QMainWindow):
         # Load and sets your ui file parameters
         loadUi(my_ui_path, self)
 
-        self.MainWidget.setStyleSheet(" #MainWidget { background-image: url(" + repo + "resources/background.png"+"}")
+        self.MainWidget.setStyleSheet(""" #MainWidget { background-image: url("../resources/background.png");}""")
         #self.MainWidget.setStyleSheet(" #MainWidget { background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(223, 191, 255, 255), stop:1 rgba(0, 0, 0, 255)); }")
         
         
