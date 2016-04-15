@@ -11,6 +11,10 @@ class Motor:
         else:
             self.available = True
             self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
+            if(len(self.dxl_io.scan())== 0):
+               self.dxl_io = pypot.dynamixel.DxlIO(self.ports[1])
+               if(len(self.dxl_io.scan())== 0):
+                   print('No motor detected (et c est la merde)!')
             self.motorRight = motorRight
             self.motorRightAvailable = False
             self.motorLeft = motorLeft
