@@ -16,7 +16,6 @@ class RobotCommunication:
             self.threadSerialCom.start()
             self.threads.append(self.threadSerialCom)
             self.motorAction = Motor(motorRight, motorLeft, motorHead)
-            self.oldHeadPosition = 80
             self.oldMotorRight = motorRight
             self.oldMotorLeft = motorLeft
             self.oldMotorHead = motorHead
@@ -44,27 +43,42 @@ class RobotCommunication:
     def move(self, dataSerialized):
         typeMovement = dataSerialized.data['direction'] #dataSerialized.data['direction'], dataSerialized.data['rightSpeed'], dataSerialized.data['headPosition'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']
         positionHead = dataSerialized.data['headPosition']
+        continu = dataSerialized.data["continu"]
         print(typeMovement)
         soundThread = Thread(target=playSound("sonKimeo/robotRoule/mouv1.ogg"))
         soundThread.daemon = True
         soundThread.start()
+        rightSpeed = float(dataSerialized.data['rightSpeed'])
+        leftSpeed = float(dataSerialized.data['leftSpeed'])
+
         if typeMovement == "Forward":
             print("in forward")
-            th = Thread(target=self.motorAction.moveForward(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+            th = Thread(target=self.motorAction.move(rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
+            if not continu:
+                thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
         if typeMovement == "Backward":
-            th = Thread(target=self.motorAction.moveBackward(dataSerialized.data['rightSpeed'], dataSerialized.data['duration'], dataSerialized.data['leftSpeed']))
+            th = Thread(target=self.motorAction.move(-rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
+            if not continu:
+                thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
         if typeMovement == "TurnLeft":
-            th = Thread(target=self.motorAction.turnLeft(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+            th = Thread(target=self.motorAction.move(-rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
+            if not continu:
+                thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
         if typeMovement == "TurnRight":
-            th = Thread(target=self.motorAction.turnRight(dataSerialized.data['rightSpeed'], dataSerialized.data['leftSpeed'], dataSerialized.data['duration']))
+            th = Thread(target=self.motorAction.move(rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
+            if not continu:
+                thHead = Thread(target=self.motorAction.moveHead(positionHead))
+
+        if typeMovement == "Stop":
+            th = Thread(target=self.motorAction.stop())
 
         th.daemon = True
         th.start()
-        if positionHead != self.oldHeadPosition:
-            thHead = Thread(target=self.motorAction.moveHead(positionHead))
+        thHead.daemon = True
+        thHead.start()
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']

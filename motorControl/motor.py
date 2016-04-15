@@ -61,47 +61,45 @@ class Motor:
         else:
             print("can't move no open port are available")
 
-    def moveBackward(self, rightSpeed, leftSpeed, duration):
-        if self.available:
-            rightSpeed = float(rightSpeed)
-            leftSpeed = float(leftSpeed)
-            self.move(-rightSpeed, leftSpeed, duration)
-        else:
-            print("can't move no open port are available")
-
-    def turnLeft(self, rightSpeed, leftSpeed, duration):
-        if self.available:
-            rightSpeed = float(rightSpeed)
-            leftSpeed = float(leftSpeed)
-            self.move(-rightSpeed, -leftSpeed, duration)
-        else:
-            print("can't move no open port are available")
-
-    def turnRight(self, rightSpeed, leftSpeed, duration):
-        if self.available:
-            rightSpeed = float(rightSpeed)
-            leftSpeed = float(leftSpeed)
-            self.move(rightSpeed, -leftSpeed, duration)
-        else:
-            print("can't move no open port are available")
-
     def moveHead(self, positionHead, headSpeed = 100.0):
-        ratio = 180.0/120.0
-        targetpositionHead = float(positionHead)*ratio -10.0
-        self.dxl_io.set_goal_position({self.motorHead: targetpositionHead})
-        self.oldPositionhead = positionHead
-        time.sleep(3)
+        if self.available:
+            if self.motorHead:
+                targetpositionHead = float(positionHead)
+                self.dxl_io.set_goal_position({self.motorHead: targetpositionHead})
+                self.oldPositionhead = positionHead
+                time.sleep(6)
+            else:
+                print("can't motor head not available")
+        else:
+            print("can't move no open port are available")
 
-    def move(self, rightSpeed, leftSpeed, duration):
-        if self.motorRightAvailable:
-            self.dxl_io.set_moving_speed({self.motorRight: rightSpeed})
-        if self.motorLeftAvailable:
-            self.dxl_io.set_moving_speed({self.motorLeft: leftSpeed})
-        time.sleep(duration)
-        if self.motorRightAvailable:
-            self.dxl_io.set_moving_speed({self.motorRight: 0.0})
-        if self.motorLeftAvailable:
-            self.dxl_io.set_moving_speed({self.motorLeft: 0.0})
+    def move(self, rightSpeed, leftSpeed, duration, continu):
+        if self.available:
+            if self.motorRightAvailable:
+                self.dxl_io.set_moving_speed({self.motorRight: rightSpeed})
+            else:
+                print("can't motor right not available")
+            if self.motorLeftAvailable:
+                self.dxl_io.set_moving_speed({self.motorLeft: leftSpeed})
+            else:
+                print("can't motor left not available")
+            if not continu :
+                time.sleep(duration)
+                if self.motorRightAvailable:
+                    self.dxl_io.set_moving_speed({self.motorRight: 0.0})
+                if self.motorLeftAvailable:
+                    self.dxl_io.set_moving_speed({self.motorLeft: 0.0})
+        else:
+            print("can't move no open port are available")
+
+    def stop(self):
+        if self.available:
+            if self.motorRightAvailable:
+                self.dxl_io.set_moving_speed({self.motorRight: 0})
+            if self.motorLeftAvailable:
+                self.dxl_io.set_moving_speed({self.motorLeft: 0})
+        else:
+            print("can't move no open port are available")
 
     def setMotorWheelMode(self, motor):
         self.dxl_io.set_wheel_mode({motor})

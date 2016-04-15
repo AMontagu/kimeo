@@ -13,6 +13,7 @@ class Movement(models.Model):
     leftSpeed = models.IntegerField()
     headPosition = models.IntegerField()
     duration = models.IntegerField()
+    continu = models.BooleanField()
 
 class Light(models.Model):
     turnOn = models.BooleanField()  #true if light turn on

@@ -40,13 +40,104 @@ jQuery(function($) {
             var sliderHeadPosition = ($('#headPosition').val() == "") ? 45 : $('#headPosition').val();
             var direction = $('#selectDirection').val();
             var duration = ($('#inputDuration').val() == "") ? 0 : parseInt($('#inputDuration').val());
+            var continu = false;
             console.log('press btn');
             console.log('sliderSpeedRight = ' + sliderSpeedRight);
             console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
             console.log('sliderHeadPosition = ' + sliderHeadPosition);
             console.log('direction = ' + direction);
             console.log('duration = ' + duration);
-            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration};
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
+            ajaxLauncher("movements/", data);
+        });
+        
+        $('#btnForward').on('click', function() {
+            var sliderSpeedRight =  200;
+            var sliderSpeedLeft = 200;
+            var sliderHeadPosition = 45; //useless
+            var direction = "Forward";
+            var duration = 10; //useless
+            var continu = true;
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            console.log('continu = ' + continu);
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
+            ajaxLauncher("movements/", data);
+        });
+
+        $('#btnBackward').on('click', function() {
+            var sliderSpeedRight =  200;
+            var sliderSpeedLeft = 200;
+            var sliderHeadPosition = 45; //useless
+            var direction = "Backward";
+            var duration = 10; //useless
+            var continu = true;
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            console.log('continu = ' + continu);
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
+            ajaxLauncher("movements/", data);
+        });
+
+        $('#btnTurnRight').on('click', function() {
+            var sliderSpeedRight =  200;
+            var sliderSpeedLeft = 200;
+            var sliderHeadPosition = 45; //useless
+            var direction = "TurnRight";
+            var duration = 10; //useless
+            var continu = true;
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            console.log('continu = ' + continu);
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
+            ajaxLauncher("movements/", data);
+        });
+
+        $('#btnTurnLeft').on('click', function() {
+            var sliderSpeedRight =  200;
+            var sliderSpeedLeft = 200;
+            var sliderHeadPosition = 45; //useless
+            var direction = "TurnLeft";
+            var duration = 10; //useless
+            var continu = true;
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            console.log('continu = ' + continu);
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
+            ajaxLauncher("movements/", data);
+        });
+
+        $('#btnStop').on('click', function() {
+            var sliderSpeedRight =  200; //useless
+            var sliderSpeedLeft = 200; //useless
+            var sliderHeadPosition = 45; //useless
+            var direction = "Stop";
+            var duration = 10; //useless
+            var continu = true; //useless
+            console.log('press btn');
+            console.log('sliderSpeedRight = ' + sliderSpeedRight);
+            console.log('sliderSpeedLeft = ' + sliderSpeedLeft);
+            console.log('sliderHeadPosition = ' + sliderHeadPosition);
+            console.log('direction = ' + direction);
+            console.log('duration = ' + duration);
+            console.log('continu = ' + continu);
+            var data = {"direction": direction, "rightSpeed": sliderSpeedRight, "leftSpeed": sliderSpeedLeft, "headPosition": sliderHeadPosition, "duration": duration, "continu": continu};
             ajaxLauncher("movements/", data);
         });
 

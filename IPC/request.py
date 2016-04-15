@@ -1,6 +1,6 @@
 import requests
 
-url = "http://172.17.97.210/api/"
+url = "http://172.17.99.254/api/"
 
 
 class RequestsPost:
@@ -11,6 +11,12 @@ class RequestsPost:
     def postMessageDate(self, robotId, userName, content, created):
         payload = {'email': self.email, 'password': self.password, 'robotId': robotId, 'userName': userName, 'content': content, 'created': created}
         r = requests.post(url + 'messages/', data=payload)
+        print(r.text)
+
+    def postMessageDate(self, speedRight, speedLeft, headPosition, duration, direction):
+        payload = {'email': self.email, 'password': self.password, 'speedRight': speedRight, 'speedLeft': speedLeft,
+                   'headPosition': headPosition, 'duration': duration, 'direction':direction}
+        r = requests.post(url + 'movements/', data=payload)
         print(r.text)
 
     def postMessage(self, robotId, userName, content):

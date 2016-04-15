@@ -52,13 +52,29 @@
             <div class="col-xs-12 marginT50 txtAlignC">
                 <p>Head Position :</p>
                     <div class="rangeSpeedMotor">
-                        <p>-60</p>
-                        <input id="headPosition" type="text" class="slider" value="" data-slider-min="-60" data-slider-max="60" data-slider-step="5" data-slider-value="45" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show">
-                        <p>60</p>
+                        <p>-100</p>
+                        <input id="headPosition" type="text" class="slider" value="" data-slider-min="-100" data-slider-max="80" data-slider-step="5" data-slider-value="45" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show">
+                        <p>80</p>
                     </div>
             </div>
             <div class="col-xs-12 marginT50">
                 <button id="btnSendMovement" class="btn btn-primary btnSendApi" type="button">Send movement</button>
+            </div>
+            <div class="col-xs-12 marginT50"></div>
+            <div class="col-sm-6 marginT50">
+                <button id="btnForward" class="btn btn-primary btnSendApi" type="button">Forward</button>
+            </div>
+            <div class="col-sm-6 marginT50">
+                <button id="btnBackward" class="btn btn-primary btnSendApi" type="button">Backward</button>
+            </div>
+            <div class="col-sm-6 marginT50">
+                <button id="btnTurnRight" class="btn btn-primary btnSendApi" type="button">Turn Right</button>
+            </div>
+            <div class="col-sm-6 marginT50">
+                <button id="btnTurnLeft" class="btn btn-primary btnSendApi" type="button">Turn Left</button>
+            </div>
+            <div class="col-xs-12 marginT50">
+                <button id="btnStop" class="btn btn-primary btnSendApi" type="button">Stop</button>
             </div>
         </div>
     </section><!--/#bottom-->

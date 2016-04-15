@@ -5,11 +5,21 @@ int knockVal = HIGH;
 unsigned long lastKnockTime; // Record the time that we measured a shock
 int knockAlarmTime = 3000; // Number of milli seconds to keep the knock alarm high
 bool knockActive = true;
+int ledRight = 9;
+int ledLeft = 3;
+int ledTest = 13;
+
+int brightness = 0;    // how bright the LED is
+int fadeAmount = 30;    // how many points to fade the LED by
+
+bool turnOn = false;
 
 void setup() {
   // start serial port at 9600 bps and wait for port to open:
   Serial.begin(9600);
-  pinMode(13, OUTPUT);
+  pinMode(ledRight, OUTPUT);
+  pinMode(ledLeft, OUTPUT);
+  pinMode(ledTest, OUTPUT);
   pinMode (knockPin, INPUT) ; // input from the KY-031
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
@@ -28,9 +38,18 @@ void loop() {
   }
   if(newByteComing){
     if(inByte == "lightOn"){
-      digitalWrite(13, HIGH);
+      digitalWrite(ledRight, HIGH);
+      digitalWrite(ledLeft, HIGH);
+      digitalWrite(ledTest, HIGH);
     }else if (inByte == "lightOff"){
-      digitalWrite(13, LOW);
+      digitalWrite(ledRight, LOW);
+      digitalWrite(ledLeft, LOW);
+      digitalWrite(ledTest, LOW);
+    }
+    if(inByte == "lightOnSlow"){
+      turnOn = true;
+    }else if (inByte == "lightOffSlow"){
+      turnOn = false;
     }
     else if (inByte == "knockActive"){
       knockActive = true;
@@ -47,6 +66,25 @@ void loop() {
       lastKnockTime = millis();
     }
   }
+  if(brightness > 255){
+    brightness = 255;
+  }
+  if(brightness < 0){
+    brightness = 0;
+  }
+  if(turnOn && brightness < 255){
+    analogWrite(ledRight, brightness);
+    analogWrite(ledLeft, brightness);
+    digitalWrite(ledTest, HIGH);
+    delay(100);
+  }
+  if(!turnOn && brightness > 0){
+    analogWrite(ledRight, brightness);
+    analogWrite(ledLeft, brightness);
+    digitalWrite(ledTest, LOW);
+    delay(100);
+  }
+  
   //delay(20); //keep arduino calm no more for geet knock sensing
 }
 
