@@ -86,17 +86,11 @@ class Motor:
             print("can't move no open port are available")
 
     def moveHead(self, positionHead, headSpeed = 100.0):
-        positionHead = float(positionHead)
-        time_ = 0.0
-        GearRatio_ = 3.0
-        self.dxl_io.set_moving_speed({self.motorHead, headSpeed})
-        if((positionHead - self.oldPositionhead)<0):
-           headSpeed = -headSpeed
-				
-        time_ = (positionHead - self.oldPositionhead)*GearRatio / headSpeed
-        time.sleep(time_)
-        self.dxl_io.set_moving_speed({self.motorHead, 0})
+        ratio = 180.0/120.0
+        targetpositionHead = (float)positionHead*ratio
+        self.dxl_io.set_goal_position({self.motorHead, targetpositionHead})
         self.oldPositionhead = positionHead
+        time.sleep(3)
 
     def move(self, rightSpeed, leftSpeed, duration):
         if self.motorRightAvailable:
