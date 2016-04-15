@@ -5,7 +5,7 @@ import time
 class Motor:
     def __init__(self, motorRight = 4, motorLeft = 10, motorHead = 11):
         self.ports = pypot.dynamixel.get_available_ports()
-        if not self.ports or self.ports[0] != "/dev/ttyAMAO":
+        if not (self.ports or self.ports[0] != "/dev/ttyAMAO"):
             self.available = False
             print('No port available for motor.')
         else:
