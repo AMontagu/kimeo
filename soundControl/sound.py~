@@ -1,7 +1,7 @@
 from pygame import mixer
 
 
-def playSound(fileName, repeat=1):
+def playSound(fileName, repeat):
     for r in range(repeat):
         mixer.init()
         mixer.music.load(fileName)
