@@ -87,8 +87,7 @@ class Motor:
 
     def moveHead(self, positionHead, headSpeed = 100.0):
         ratio = 180.0/120.0
-        targetPosition = (float)positionHead
-        targetHead = targetPosition*ratio
+        targetpositionHead = float(positionHead)*ratio
         self.dxl_io.set_goal_position({self.motorHead, targetpositionHead})
         self.oldPositionhead = positionHead
         time.sleep(3)
