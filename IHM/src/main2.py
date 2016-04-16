@@ -10,7 +10,6 @@ from ActionOnJson import *
 from sound import *
 from threading import *
 
-
 class MyHandler(PatternMatchingEventHandler):
     patterns = ["*"]
 
@@ -42,7 +41,7 @@ if __name__ == "__main__":
     
     MainWindow = MainWidget()
     MainWindow.showFullScreen()
-    #MainWindow.show()
+
     observer = Observer()
     observer.schedule(MyHandler(), '/home/pi/Desktop/Kimeo/kimeo/IPC')
     observer.start()
