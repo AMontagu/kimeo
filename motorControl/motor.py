@@ -4,6 +4,7 @@ import time
 
 class Motor:
     def __init__(self, motorRight = 4, motorLeft = 10, motorHead = 11):
+        self.printInfo()
         self.ports = pypot.dynamixel.get_available_ports()
         if not (self.ports or self.ports[0] != "/dev/ttyAMAO"):
             self.available = False
@@ -11,7 +12,7 @@ class Motor:
         else:
             self.available = True
             try:
-              self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
+              self.dxl_io = pypot.dynamixel.DxlIO(self.ports[1])
             except:
               print('No motor detected (et c est la merde)!')
               self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
