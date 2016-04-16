@@ -17,7 +17,8 @@ class Motor:
             except:
               print('No motor detected (et c est la merde)!')
               self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
-            print(self.dxl_io.scan())
+            #print(self.dxl_io.scan())
+            time.sleep(2)
             self.motorRight = motorRight
             self.motorRightAvailable = False
             self.motorLeft = motorLeft

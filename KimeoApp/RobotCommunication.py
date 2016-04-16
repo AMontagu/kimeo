@@ -15,7 +15,8 @@ class RobotCommunication:
             self.threadSerialCom.daemon = True
             self.threadSerialCom.start()
             self.threads.append(self.threadSerialCom)
-            self.motorAction = Motor(motorRight, motorLeft, motorHead)
+            #self.motorAction = Motor(motorRight, motorLeft, motorHead)
+            self.motorAction = Motor()
             self.oldMotorRight = motorRight
             self.oldMotorLeft = motorLeft
             self.oldMotorHead = motorHead
