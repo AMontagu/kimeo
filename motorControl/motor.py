@@ -16,7 +16,7 @@ class Motor:
             except:
               print('No motor detected (et c est la merde)!')
               self.dxl_io = pypot.dynamixel.DxlIO(self.ports[0])
-            print(self.dxl_io.scan())
+            #print(self.dxl_io.scan())
             self.motorRight = motorRight
             self.motorRightAvailable = False
             self.motorLeft = motorLeft
@@ -55,14 +55,6 @@ class Motor:
             if self.motorHeadAvailable:
                 print(self.dxl_io.get_control_mode((self.motorHead,)))
 
-    def moveForward(self, rightSpeed, leftSpeed, duration):
-        if self.available:
-            rightSpeed = float(rightSpeed)
-            leftSpeed = float(leftSpeed)
-            self.move(rightSpeed,-leftSpeed,duration)
-        else:
-            print("can't move no open port are available")
-
     def moveHead(self, positionHead, headSpeed = 100.0):
         if self.available:
             if self.motorHead:
@@ -83,7 +75,7 @@ class Motor:
             else:
                 print("can't motor right not available")
             if self.motorLeftAvailable:
-                self.dxl_io.set_moving_speed({self.motorLeft: leftSpeed})
+                self.dxl_io.set_moving_speed({self.motorLeft: -leftSpeed})
             else:
                 print("can't motor left not available")
             if not continu :
