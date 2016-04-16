@@ -7,7 +7,7 @@ from soundControl.sound import *
 
 
 class SerialCom(threading.Thread):
-    def __init__(self, threadID, name, port = '/dev/ttyACM0', baudrate = 9600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE, bytesize = serial.EIGHTBITS):
+    def __init__(self, threadID, name, port = '/dev/ttyACM1', baudrate = 9600, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE, bytesize = serial.EIGHTBITS):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name

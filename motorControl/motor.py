@@ -109,4 +109,5 @@ class Motor:
 if __name__ == '__main__':
     motor = Motor()
     #motor.printInfo()
-    motor.move(200,200,5,False)
+    #motor.move(200,200,5,False)
+    motor.moveHead(80)
