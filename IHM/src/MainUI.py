@@ -3,10 +3,20 @@ from PyQt4.QtCore import *
 from PyQt4.uic import loadUi
 from TrajectoryDrawer import QPainting_tool
 from Brain import *
-
+import sys
+from threading import *
+sys.path.append('/home/pi/Desktop/Kimeo/kimeo/soundControl')
+from sound import *
 
 repo = "/home/pi/Desktop/Kimeo/kimeo/IHM/"
 #repo = "../"
+
+def PlaySound(path_sound):
+    th = Thread(target=playSound(path_sound))
+    th.daemon = True
+    th.start()
+    
+    
 class MainWidget(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -36,6 +46,8 @@ class MainWidget(QMainWindow):
         self.Eye.setMovie(self.EyeGif)
         self.Mouth.setMovie(self.MouthGif)
         self.Brain_ = QTimer(self)
+        self.Animator_ = QTimer(self)
+        
         self.Emotional = Brain()
         self.Opening_ = QTimer(self)
         self.Opening_.stop()
@@ -44,7 +56,10 @@ class MainWidget(QMainWindow):
                      self._slot_Openned)
         self.connect(self.Brain_, SIGNAL("timeout()"),
                      self._slot_brain)
-        self.Brain_.start(3000)
+        self.connect(self.Animator_, SIGNAL("timeout()"),
+                     self._animation_slot)
+        self.Animator_.start(10347)
+        self.Brain_.start(40532)
         self.TrajectoryDrawer = QPainting_tool()
         self.TrajectoryDrawer.resize(540,380)
         self.Trajectory_Layout.addWidget(self.TrajectoryDrawer)
@@ -89,6 +104,7 @@ class MainWidget(QMainWindow):
             self.Mouth.setMovie(self.MouthGif)
             self.EyeGif.start()
             self.MouthGif.start()
+            self.PlaySound(self.Emotional.Anim.SoundAnim)
             self.Brain_.start(1000)
         else:
             self.NotNeutral = True
@@ -101,12 +117,32 @@ class MainWidget(QMainWindow):
             self.Mouth.setMovie(self.MouthGif)
             self.EyeGif.start()
             self.MouthGif.start()
-            self.Brain_.start(3000)
+            self.PlaySound(self.Emotional.Anim.SoundAnim)
+            self.Brain_.start(40532)
         
         self.update()
         
     def _animation_slot(self):
-        print("test")
+        eyeAnim = -1
+        mouthAnim = -1
+        soundAnim = -1
+        if(len(self.Emotional.Anim.EyeAnimation)>0):
+            eyeAnim = randint(0,len(self.Emotional.Anim.EyeAnimation)-1)
+            self.EyeGif = QMovie(self.Emotional.Anim.EyeAnimation[eyeAnim])
+            self.EyeGif.setScaledSize(QSize(520,165))
+            self.Eye.setMovie(self.EyeGif)
+            self.EyeGif.start()
+        if(len(self.Emotional.Anim.MouthAnimation)>0):
+            mouthAnim = randint(0,len(self.Emotional.Anim.MouthAnimation)-1)
+            self.MouthGif = QMovie(self.Emotional.Anim.MouthAnimation[mouthAnim])
+            self.MouthGif.setScaledSize(QSize(340,120))
+            self.Mouth.setMovie(self.MouthGif)
+            self.MouthGif.start()
+        if(len(self.Emotional.Anim.Sound)>0):
+            soundAnim = randint(0,len(self.Emotional.Anim.Sound)-1)
+            self.PlaySound(self.Emotional.Anim.Sound[soundAnim])
+        
+        self.update()
         
     def SetStyleButton(self):
         str_return_icon = "  QPushButton {background-image : url(\"" + repo + "resources/back_arrow.png\");}"

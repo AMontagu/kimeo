@@ -82,8 +82,7 @@ class AngryFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-sad2neutral.gif", "glassesEyes-neutral2sad.gif")
         self.MouthAnim = Animation("whiteMouth-troubled2neutral.gif","whiteMouth-neutral2troubled.gif")
-        self.SoundAnim = "angry/angry.ogg"
-        
+        self.SoundAnim = "angry/angry.ogg"     
         self.EyeAnimation = []
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
@@ -94,7 +93,7 @@ class SleepyFace():
         self.EyeAnim = Animation("glassesEyes-closed2neutral.gif", "glassesEyes-neutral2closed.gif")
         self.MouthAnim = Animation("whiteMouth-troubled2neutral.gif","whiteMouth-neutral2troubled.gif")
         self.SoundAnim = "sleepMode/sleep.ogg" 
-        self.EyeAnimation = []
+        self.EyeAnimation = [Animation("whiteEyes-sleep.gif","whiteEyes-sleep.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["sleepMode/sleep.ogg"]
@@ -102,8 +101,9 @@ class SleepyFace():
 class HappyFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-love2neutral.gif", "glassesEyes-neutral2love.gif")
-        self.MouthAnim = Animation("whiteMouth-happy2neutral.gif","whiteMouth-neutral2happy.gif") 
-        self.EyeAnimation = []
+        self.MouthAnim = Animation("whiteMouth-happy2neutral.gif","whiteMouth-neutral2happy.gif")
+        self.SoundAnim = "happy/happy.ogg" 
+        self.EyeAnimation = [Animation("glassesEyes-love.gif","glassesEyes-love.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["happy/happy.ogg",
@@ -128,6 +128,7 @@ class SadFace():
         self.EyeAnim = Animation("glassesEyes-sad2neutral.gif", "glassesEyes-neutral2sad.gif")
         self.MouthAnim = Animation("whiteMouth-sad2neutral.gif","whiteMouth-neutral2sad.gif") 
         self.EyeAnimation = []
+        self.SoundAnim = "randomSounds/random1.ogg"
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["randomSounds/random1.ogg",
@@ -148,8 +149,10 @@ class SadFace():
 class NeutralFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-neutral.gif", "glassesEyes-neutral.gif")
-        self.MouthAnim = Animation("whiteMouth-troubled2neutral.gif","whiteMouth-neutral2troubled.gif") 
-        self.EyeAnimation = []
+        self.MouthAnim = Animation("whiteMouth-troubled2neutral.gif","whiteMouth-neutral2troubled.gif")
+        self.SoundAnim = "randomSounds/random2.ogg" 
+        self.EyeAnimation = [ Animation("glassesEyes-lookLeft2neutral.gif","glassesEyes-neutral2lookLeft.gif"),
+                             Animation("glassesEyes-lookRight2neutral.gif","glassesEyes-neutral2lookRight.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         
@@ -171,8 +174,9 @@ class NeutralFace():
 class LoveFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-love2neutral.gif", "glassesEyes-neutral2love.gif")
-        self.MouthAnim = Animation("whiteMouth-love2neutral.gif","whiteMouth-neutral2love.gif") 
-        self.EyeAnimation = []
+        self.MouthAnim = Animation("whiteMouth-love2neutral.gif","whiteMouth-neutral2love.gif")
+        self.SoundAnim = "happy/happy.ogg"
+        self.EyeAnimation = [Animation("glassesEyes-love.gif","glassesEyes-love.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["randomSounds/random1.ogg",
@@ -194,7 +198,9 @@ class MessageFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-neutral.gif", "glassesEyes-neutral.gif")
         self.MouthAnim = Animation("whiteMouth-message2neutral.gif","whiteMouth-neutral2message.gif") 
-        self.EyeAnimation = []
+        self.SoundAnim = "message/message1.ogg"
+        self.EyeAnimation = [ Animation("glassesEyes-lookLeft2neutral.gif","glassesEyes-neutral2lookLeft.gif"),
+                             Animation("glassesEyes-lookRight2neutral.gif","glassesEyes-neutral2lookRight.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["message/message1.ogg",
@@ -209,7 +215,9 @@ class BatterieFace():
     def __init__(self):
         self.EyeAnim = Animation("glassesEyes-neutral.gif", "glassesEyes-neutral.gif")
         self.MouthAnim = Animation("whiteMouth-battery2neutral.gif","whiteMouth-neutral2battery.gif") 
-        self.EyeAnimation = []
+        self.SoundAnim = "batterie/batterie1.ogg"
+        self.EyeAnimation = [ Animation("glassesEyes-lookLeft2neutral.gif","glassesEyes-neutral2lookLeft.gif"),
+                             Animation("glassesEyes-lookRight2neutral.gif","glassesEyes-neutral2lookRight.gif")]
         self.MouthAnimation = [Animation("whiteMouth-talking.gif","whiteMouth-talking.gif"),
                                Animation("whiteMouth-talking-slow.gif","whiteMouth-talking-slow.gif")]
         self.Sound = ["batterie/batterie1.ogg",
