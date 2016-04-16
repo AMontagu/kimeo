@@ -128,13 +128,13 @@ class MainWidget(QMainWindow):
         soundAnim = -1
         if(len(self.Emotional.Anim.EyeAnimation)>0):
             eyeAnim = randint(0,len(self.Emotional.Anim.EyeAnimation)-1)
-            self.EyeGif = QMovie(self.Emotional.Anim.EyeAnimation[eyeAnim])
+            self.EyeGif = QMovie(self.Emotional.Anim.EyeAnimation[eyeAnim].FN)
             self.EyeGif.setScaledSize(QSize(520,165))
             self.Eye.setMovie(self.EyeGif)
             self.EyeGif.start()
         if(len(self.Emotional.Anim.MouthAnimation)>0):
             mouthAnim = randint(0,len(self.Emotional.Anim.MouthAnimation)-1)
-            self.MouthGif = QMovie(self.Emotional.Anim.MouthAnimation[mouthAnim])
+            self.MouthGif = QMovie(self.Emotional.Anim.MouthAnimation[mouthAnim].FN)
             self.MouthGif.setScaledSize(QSize(340,120))
             self.Mouth.setMovie(self.MouthGif)
             self.MouthGif.start()
