@@ -1,4 +1,5 @@
 from pygame import mixer
+import time
 
 repo = "/home/pi/Desktop/Kimeo/kimeo/soundControl/sonKimeo/"
 def playSound(fileName, repeat=1):
@@ -7,11 +8,12 @@ def playSound(fileName, repeat=1):
           mixer.init()
         except:
           return
-        mixer.sound.load(repo + fileName)
-        mixer.sound.play()
-        while mixer.sound.get_busy() == True:
+        sound = mixer.Sound(repo + fileName)
+        sound.play()
+        while mixer.music.get_busy() == True:
             continue
 
 
 if __name__ == '__main__':
-    playSound("bird.wav", 2)
+    playSound("../bird.wav", 2)
+    time.sleep(2)
