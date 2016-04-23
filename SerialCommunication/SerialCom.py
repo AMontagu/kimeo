@@ -53,9 +53,15 @@ class SerialCom(threading.Thread):
                             print(input)
                             if(input == "test"):
                                 print("receive test")
-                            if(input == "knock"):
-                                print("knock")
-                                playSound("sonKimeo/sensor/sensor1.ogg")
+                            elif(input == "knock"):
+                                print("knock received from arduino")
+                                playSound("sensor/sensor1.ogg")
+                            elif (input == "knock\\r\\n'"):
+                                print("knock r n double anti slash received from arduino")
+                                playSound("sensor/sensor1.ogg")
+                            elif (input == "knock\r\n"):
+                                print("knock r n received from arduino")
+                                playSound("sensor/sensor1.ogg")
                         time.sleep(1)
             except IOError:
                 pass

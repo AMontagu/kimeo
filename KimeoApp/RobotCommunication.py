@@ -25,7 +25,7 @@ class RobotCommunication:
                 self.oldMotorRight = motorRight
                 self.oldMotorLeft = motorLeft
                 self.oldMotorHead = motorHead
-            playSound("sonKimeo/ON_OFF/on.ogg")
+            playSound("ON_OFF/on.ogg")
 
         def __str__(self):
             return repr(self)
@@ -53,7 +53,7 @@ class RobotCommunication:
         continu = dataSerialized.data["continu"]
         print(typeMovement)
         if self.motorAvailable:
-            soundThread = Thread(target=playSound("sonKimeo/robotRoule/mouv1.ogg"))
+            soundThread = Thread(target=playSound("robotRoule/mouv1.ogg"))
             soundThread.daemon = True
             soundThread.start()
             rightSpeed = float(dataSerialized.data['rightSpeed'])
