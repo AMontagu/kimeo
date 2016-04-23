@@ -39,8 +39,6 @@ class RobotCommunication:
             if self.motorAvailable:
                 if(motorRight != RobotCommunication.instance.oldMotorRight or motorLeft != RobotCommunication.instance.oldMotorLeft or motorHead != RobotCommunication.instance.oldMotorHead):
                     RobotCommunication.instance.motorAction.initMotor(motorRight, motorLeft, motorHead)
-            else:
-                RobotCommunication.instance.motorAction.initMotor(motorRight, motorLeft, motorHead)
 
     def __getattr__(self, name):
         return getattr(self.instance, name)
