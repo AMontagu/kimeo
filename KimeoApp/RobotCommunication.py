@@ -117,7 +117,7 @@ class RobotCommunication:
                 if t.getName() == "serialThread":
                     t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)"""
             if turnOn:
-                self.threadSerialCom.write("lightOn")
+                self.threadSerialCom.write(b"lightOn")
             else:
-                self.threadSerialCom.write("lightOff")
+                self.threadSerialCom.write(b"lightOff")
             print(turnOn)
