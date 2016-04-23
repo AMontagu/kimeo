@@ -40,3 +40,13 @@ class Brain():
             self.change_state = True
         else:
             self.change_state = False
+    
+    def ChangeState(self, State_):
+        
+        if(not(State_ == self.State)):
+            self.State = State_
+            self.change_state = True
+        else:
+            self.change_state = False
+        
+        

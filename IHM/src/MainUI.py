@@ -118,7 +118,7 @@ class MainWidget(QMainWindow):
             self.EyeGif.start()
             self.MouthGif.start()
             PlaySound(self.Emotional.Anim.SoundAnim)
-            self.Brain_.start(40532)
+            self.Brain_.start(60000)
         
         self.update()
         
@@ -301,3 +301,6 @@ class MainWidget(QMainWindow):
         self.Parameter_button.setVisible(self.isReduced)
         self.isReduced = not(self.isReduced)
     
+    def setEmotion(self, emotion):
+        self.Emotional.ChangeState(emotion)
+        self._slot_brain()

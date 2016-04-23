@@ -10,10 +10,11 @@ from ActionOnJson import *
 from sound import *
 from threading import *
 
+MainWindow = MainWidget()
 
 class MyHandler(PatternMatchingEventHandler):
     patterns = ["*"]
-
+        
     def on_modified(self, event):
         print(event.src_path, event.event_type)
         if event.src_path == fileForScreen:
@@ -23,14 +24,21 @@ class MyHandler(PatternMatchingEventHandler):
             # timeToStay = jsonText["timeToStay"]
             # stay = jsonText["stay"]
             if imageName == "angry":
-                th = Thread(target=playSound("angry/angry.ogg"))
-                th.daemon = True
-                th.start()
+                MainWindow.setEmotion("angry")
             if imageName == "happy":
-                th = Thread(target=playSound("happy/happy.ogg"))
-                th.daemon = True
-                th.start()
-            print("Ludo ! do something in the conditional expression above !")
+                MainWindow.setEmotion("happy")
+            if imageName == "neutral":
+                MainWindow.setEmotion("neutral")
+            if imageName == "sad":
+                MainWindow.setEmotion("sad")
+            if imageName == "message":
+                MainWindow.setEmotion("message")
+            if imageName == "batterie":
+                MainWindow.setEmotion("batterie")
+            if imageName == "sleepy":
+                MainWindow.setEmotion("sleepy")
+            if imageName == "love":
+                MainWindow.setEmotion("love")
 
 repo = "/home/pi/Desktop/Kimeo/kimeo/IHM/"
 
@@ -40,13 +48,14 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     
-    MainWindow = MainWidget()
     MainWindow.showFullScreen()
     #MainWindow.show()
     observer = Observer()
+    
     observer.schedule(MyHandler(), '/home/pi/Desktop/Kimeo/kimeo/IPC')
+    
     observer.start()
-
+    
     try:
         app.exec_()
     except KeyboardInterrupt:
