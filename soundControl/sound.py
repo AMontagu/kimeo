@@ -7,9 +7,9 @@ def playSound(fileName, repeat=1):
           mixer.init()
         except:
           return
-        mixer.music.load(repo + fileName)
-        mixer.music.play()
-        while mixer.music.get_busy() == True:
+        mixer.sound.load(repo + fileName)
+        mixer.sound.play()
+        while mixer.sound.get_busy() == True:
             continue
 
 

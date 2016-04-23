@@ -1,10 +1,13 @@
 from pygame import mixer
 
-
-def playSound(fileName, repeat):
+repo = "/home/pi/Desktop/Kimeo/kimeo/soundControl/sonKimeo/"
+def playSound(fileName, repeat=1):
     for r in range(repeat):
-        mixer.init()
-        mixer.music.load(fileName)
+        try:
+          mixer.init()
+        except:
+          return
+        mixer.music.load(repo + fileName)
         mixer.music.play()
         while mixer.music.get_busy() == True:
             continue

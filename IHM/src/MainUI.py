@@ -58,8 +58,8 @@ class MainWidget(QMainWindow):
                      self._slot_brain)
         self.connect(self.Animator_, SIGNAL("timeout()"),
                      self._animation_slot)
-        self.Animator_.start(10347)
-        self.Brain_.start(40532)
+        self.Animator_.start(60000)
+        self.Brain_.start(180000)
         self.TrajectoryDrawer = QPainting_tool()
         self.TrajectoryDrawer.resize(540,380)
         self.Trajectory_Layout.addWidget(self.TrajectoryDrawer)
