@@ -11,7 +11,7 @@ class RobotCommunication:
         def __init__(self, motorRight, motorLeft, motorHead):
             self.threads = []
 
-            self.threadSerialCom = SerialCom(threadID=1, name="serialThread")
+            #self.threadSerialCom = SerialCom(threadID=1, name="serialThread")
             self.threadSerialCom.daemon = True
             self.threadSerialCom.start()
             self.threads.append(self.threadSerialCom)
