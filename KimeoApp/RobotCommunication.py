@@ -8,18 +8,23 @@ from soundControl.sound import *
 
 class RobotCommunication:
     class __RobotCommunication:
-        def __init__(self, motorRight, motorLeft, motorHead):
+        def __init__(self, motorRight, motorLeft, motorHead, serialAvailable=False, motorAvailable=True):
             self.threads = []
 
-            #self.threadSerialCom = SerialCom(threadID=1, name="serialThread")
-            self.threadSerialCom.daemon = True
-            self.threadSerialCom.start()
-            self.threads.append(self.threadSerialCom)
-            #self.motorAction = Motor(motorRight, motorLeft, motorHead)
-            self.motorAction = Motor()
-            self.oldMotorRight = motorRight
-            self.oldMotorLeft = motorLeft
-            self.oldMotorHead = motorHead
+            self.serialAvailable = serialAvailable
+            if serialAvailable:
+                self.threadSerialCom = SerialCom(threadID=1, name="serialThread")
+                self.threadSerialCom.daemon = True
+                self.threadSerialCom.start()
+                self.threads.append(self.threadSerialCom)
+
+            self.motorAvailable = motorAvailable
+            if self.motorAvailable:
+                #self.motorAction = Motor(motorRight, motorLeft, motorHead)
+                self.motorAction = Motor()
+                self.oldMotorRight = motorRight
+                self.oldMotorLeft = motorLeft
+                self.oldMotorHead = motorHead
             playSound("sonKimeo/ON_OFF/on.ogg")
 
         def __str__(self):
@@ -46,40 +51,41 @@ class RobotCommunication:
         positionHead = dataSerialized.data['headPosition']
         continu = dataSerialized.data["continu"]
         print(typeMovement)
-        soundThread = Thread(target=playSound("sonKimeo/robotRoule/mouv1.ogg"))
-        soundThread.daemon = True
-        soundThread.start()
-        rightSpeed = float(dataSerialized.data['rightSpeed'])
-        leftSpeed = float(dataSerialized.data['leftSpeed'])
+        if self.motorAvailable:
+            soundThread = Thread(target=playSound("sonKimeo/robotRoule/mouv1.ogg"))
+            soundThread.daemon = True
+            soundThread.start()
+            rightSpeed = float(dataSerialized.data['rightSpeed'])
+            leftSpeed = float(dataSerialized.data['leftSpeed'])
 
-        if typeMovement == "Forward":
-            print("in forward")
-            th = Thread(target=self.motorAction.move(rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
-            if not continu:
-                thHead = Thread(target=self.motorAction.moveHead(positionHead))
+            if typeMovement == "Forward":
+                print("in forward")
+                th = Thread(target=self.motorAction.move(rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
+                if not continu:
+                    thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
-        if typeMovement == "Backward":
-            th = Thread(target=self.motorAction.move(-rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
-            if not continu:
-                thHead = Thread(target=self.motorAction.moveHead(positionHead))
+            if typeMovement == "Backward":
+                th = Thread(target=self.motorAction.move(-rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
+                if not continu:
+                    thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
-        if typeMovement == "TurnLeft":
-            th = Thread(target=self.motorAction.move(-rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
-            if not continu:
-                thHead = Thread(target=self.motorAction.moveHead(positionHead))
+            if typeMovement == "TurnLeft":
+                th = Thread(target=self.motorAction.move(-rightSpeed, leftSpeed, dataSerialized.data['duration'], continu))
+                if not continu:
+                    thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
-        if typeMovement == "TurnRight":
-            th = Thread(target=self.motorAction.move(rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
-            if not continu:
-                thHead = Thread(target=self.motorAction.moveHead(positionHead))
+            if typeMovement == "TurnRight":
+                th = Thread(target=self.motorAction.move(rightSpeed, -leftSpeed, dataSerialized.data['duration'], continu))
+                if not continu:
+                    thHead = Thread(target=self.motorAction.moveHead(positionHead))
 
-        if typeMovement == "Stop":
-            th = Thread(target=self.motorAction.stop())
+            if typeMovement == "Stop":
+                th = Thread(target=self.motorAction.stop())
 
-        th.daemon = True
-        th.start()
-        thHead.daemon = True
-        thHead.start()
+            th.daemon = True
+            th.start()
+            thHead.daemon = True
+            thHead.start()
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
@@ -104,12 +110,13 @@ class RobotCommunication:
         blink = dataSerialized.data['blink']
         repeat = dataSerialized.data['repeat']
         intervalBlinking = dataSerialized.data['intervalBlinking']
-        """for t in self.threads:
-            print(t.getName())
-            if t.getName() == "serialThread":
-                t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)"""
-        if turnOn:
-            self.threadSerialCom.write("lightOn")
-        else:
-            self.threadSerialCom.write("lightOff")
-        print(turnOn)
+        if self.serialAvailable:
+            """for t in self.threads:
+                print(t.getName())
+                if t.getName() == "serialThread":
+                    t.write(turnOn + "," + blink + "," + repeat + "," + intervalBlinking)"""
+            if turnOn:
+                self.threadSerialCom.write("lightOn")
+            else:
+                self.threadSerialCom.write("lightOff")
+            print(turnOn)
