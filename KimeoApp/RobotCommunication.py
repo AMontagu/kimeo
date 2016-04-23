@@ -85,8 +85,9 @@ class RobotCommunication:
 
             th.daemon = True
             th.start()
-            thHead.daemon = True
-            thHead.start()
+            if not continu:
+                thHead.daemon = True
+                thHead.start()
 
     def changeRobotFace(self, dataSerialized):
         face = dataSerialized.data['imageName'] #data['imageName'], data['stay'], data['timeToStay']
