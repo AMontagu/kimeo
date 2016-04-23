@@ -1,6 +1,6 @@
 from pygame import mixer
 
-repo = "/home/pi/Desktop/Kimeo/kimeo/soundControl/"
+repo = "/home/pi/Desktop/Kimeo/kimeo/soundControl/sonKimeo/"
 def playSound(fileName, repeat=1):
     for r in range(repeat):
         try:
