@@ -67,7 +67,7 @@ class SerialCom(threading.Thread):
             #self.ser.write(data + '\r\n')
             print("send this : " + str(data))
             self.ser.write(data)
-            self.ser.write(str(data))
+            #self.ser.write(str(data))
 
     def initSerial(self):
         if self.available:
