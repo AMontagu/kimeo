@@ -25,8 +25,8 @@ class MainWidget(QMainWindow):
         # Load and sets your ui file parameters
         loadUi(my_ui_path, self)
 
-        #self.MainWidget.setStyleSheet(" #MainWidget { background-color: black }")
-        self.MainWidget.setStyleSheet(" #MainWidget { background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(223, 191, 255, 255), stop:1 rgba(0, 0, 0, 255)); }")
+        self.MainWidget.setStyleSheet(" #MainWidget { background-image: url(" + repo + "resources/background.png"+"}")
+        #self.MainWidget.setStyleSheet(" #MainWidget { background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(223, 191, 255, 255), stop:1 rgba(0, 0, 0, 255)); }")
         
         
         self.PageSelector.setCurrentIndex(0)
@@ -104,7 +104,7 @@ class MainWidget(QMainWindow):
             self.Mouth.setMovie(self.MouthGif)
             self.EyeGif.start()
             self.MouthGif.start()
-            self.PlaySound(self.Emotional.Anim.SoundAnim)
+            PlaySound(self.Emotional.Anim.SoundAnim)
             self.Brain_.start(1000)
         else:
             self.NotNeutral = True
@@ -117,7 +117,7 @@ class MainWidget(QMainWindow):
             self.Mouth.setMovie(self.MouthGif)
             self.EyeGif.start()
             self.MouthGif.start()
-            self.PlaySound(self.Emotional.Anim.SoundAnim)
+            PlaySound(self.Emotional.Anim.SoundAnim)
             self.Brain_.start(40532)
         
         self.update()
@@ -140,7 +140,7 @@ class MainWidget(QMainWindow):
             self.MouthGif.start()
         if(len(self.Emotional.Anim.Sound)>0):
             soundAnim = randint(0,len(self.Emotional.Anim.Sound)-1)
-            self.PlaySound(self.Emotional.Anim.Sound[soundAnim])
+            PlaySound(self.Emotional.Anim.Sound[soundAnim])
         
         self.update()
         
