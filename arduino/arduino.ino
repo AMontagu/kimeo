@@ -3,7 +3,7 @@ bool newByteComing = false;
 int knockPin = 10; // Use Pin 10 as our Input
 int knockVal = HIGH;
 unsigned long lastKnockTime; // Record the time that we measured a shock
-int knockAlarmTime = 3000; // Number of milli seconds to keep the knock alarm high
+int knockAlarmTime = 10000; // Number of milli seconds to keep the knock alarm high
 bool knockActive = true;
 int ledRight = 9;
 int ledLeft = 3;

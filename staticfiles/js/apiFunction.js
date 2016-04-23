@@ -159,15 +159,23 @@ jQuery(function($) {
             ajaxLauncher("lights/", data);
         });
 
-        $('#playCuteSound').on('click', function() {
-            var soundName = "cute";
+        $('#playHappySound').on('click', function() {
+            var soundName = "happy/happy.ogg";
+            var repeat = 1;
+            var data = {"soundName": soundName, "repeat": repeat};
+            ajaxLauncher("sounds/", data);
+        });
+
+        $('#playAngrySound').on('click', function() {
+            var soundName = "angry/angry.ogg";
             var repeat = 1;
             var data = {"soundName": soundName, "repeat": repeat};
             ajaxLauncher("sounds/", data);
         });
 
         $('#playOtherSound').on('click', function() {
-            var soundName = "other";
+            random = Math.floor(Math.random() * 14) + 1  
+            var soundName = "randomSounds/random"+ random+".ogg";
             var repeat = 1;
             var data = {"soundName": soundName, "repeat": repeat};
             ajaxLauncher("sounds/", data);

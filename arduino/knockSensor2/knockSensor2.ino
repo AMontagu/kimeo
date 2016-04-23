@@ -22,6 +22,6 @@ void loop ()
   if(knockVal == 0){
     counter += 1;
     Serial.println(counter);
-    delay(50);
+    delay(1000);
   }
 }
