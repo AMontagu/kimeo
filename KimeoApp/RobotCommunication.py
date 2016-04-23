@@ -8,7 +8,7 @@ from soundControl.sound import *
 
 class RobotCommunication:
     class __RobotCommunication:
-        def __init__(self, motorRight, motorLeft, motorHead, serialAvailable=False, motorAvailable=True):
+        def __init__(self, motorRight, motorLeft, motorHead, serialAvailable=True, motorAvailable=False):
             self.threads = []
 
             self.serialAvailable = serialAvailable
